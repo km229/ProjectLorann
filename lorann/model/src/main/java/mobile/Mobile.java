@@ -23,11 +23,6 @@ public abstract class Mobile extends Element implements IMobile {
 	/** The board. */
 	private IBoard board;
 
-	public Mobile(Sprite sprite, Permeability permeability) {
-		super(sprite, permeability);
-		// TODO Auto-generated constructor stub
-	}
-
 	/**
 	 * Instantiates a new mobile.
 	 *
@@ -93,14 +88,14 @@ public abstract class Mobile extends Element implements IMobile {
 		this.setHasMoved();
 	}
 
-	private void setY(int y) {
+	protected void setY(int y) {
 		this.getPosition().y = (y + this.getMap().getHeight()) % this.getMap().getHeight();
 		if (this.isCrashed()) {
 			this.die();
 		}
 	}
 
-	private void setX(int x) {
+	protected void setX(int x) {
 		this.getPosition().x = x;
 		if (this.isCrashed()) {
 			this.die();
@@ -115,7 +110,7 @@ public abstract class Mobile extends Element implements IMobile {
 		return this.getPosition().x;
 	}
 
-	private void setHasMoved() {
+	protected void setHasMoved() {
 		this.getMap().setMobileHasChanged();
 	}
 
@@ -136,7 +131,7 @@ public abstract class Mobile extends Element implements IMobile {
 		this.setHasMoved();
 	}
 
-	private boolean isCrashed() {
+	public Boolean isCrashed() {
 		// TODO Auto-generated method stub
 		return this.getMap().getOnTheMapXY(this.getX(), this.getY()).getPermeability() == Permeability.BLOCKING;
 	}

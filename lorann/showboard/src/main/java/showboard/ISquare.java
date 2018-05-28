@@ -2,6 +2,8 @@ package showboard;
 
 import java.awt.Image;
 
+import javax.swing.ImageIcon;
+
 /**
  * <h1>The Interface ISquare.</h1>
  * <p>
@@ -19,5 +21,5 @@ public interface ISquare {
      *
      * @return the image
      */
-    Image getImage();
+    ImageIcon getImage();
 }

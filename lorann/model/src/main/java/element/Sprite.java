@@ -1,9 +1,8 @@
 package element;
 
-import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  * <h1>Sprite Class</h1>
@@ -14,7 +13,7 @@ import javax.imageio.ImageIO;
 public class Sprite {
 
 	/** The image. */
-	private Image image;
+	private ImageIcon image;
 
 	/** The image name. */
 	private String imageName;
@@ -37,23 +36,13 @@ public class Sprite {
 		this.setConsoleImage(character);
 		this.setImageName(imageName);
 	}
-	
-    /**
-     * Instantiates a new sprite.
-     *
-     * @param character
-     *            the character
-     */
-    public Sprite(final char character) {
-        this(character, "noimage.jpg");
-    }
 
 	/**
 	 * Gets the image.
 	 *
 	 * @return the image
 	 */
-	public final Image getImage() {
+	public final ImageIcon getImage() {
 		return this.image;
 	}
 
@@ -64,7 +53,7 @@ public class Sprite {
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public final void loadImage() throws IOException {
-		this.setImage(ImageIO.read(new File("lorann/sprite/" + this.getImageName())));
+		this.image = new ImageIcon("lorann/sprite/" + this.getImageName());
 	}
 
 	/**
@@ -82,7 +71,7 @@ public class Sprite {
 	 * @param image
 	 *            the new image
 	 */
-	private void setImage(final Image image) {
+	private void setImage(ImageIcon image) {
 		this.image = image;
 	}
 

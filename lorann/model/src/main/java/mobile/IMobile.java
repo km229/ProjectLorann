@@ -5,7 +5,7 @@ import java.awt.Point;
 import element.IElement;
 import showboard.IPawn;
 
-public interface IMobile extends IPawn, IElement{
+public interface IMobile extends IPawn, IElement {
 
     /**
      * Move up.
@@ -56,13 +56,10 @@ public interface IMobile extends IPawn, IElement{
     Boolean isAlive();
 
     /**
-     * Checks if the car crashed.
+     * Checks if the lorann crashed in a monster.
      *
      * @return the boolean
      */
-    Boolean isDead();
-
-    @Override
-    Point getPosition();
+    Boolean isCrashed();
 
 }
