@@ -1,12 +1,12 @@
 package view;
 
 /**
- * <h1>The Interface IView.</h1>
+ * <h1>Interface IView.</h1>
  *
- * @author Jean-Aymeric DIET jadiet@cesi.fr
+ * @author group2
  * @version 1.0
  */
-public interface IView {
+public interface ILorannView {
 
     /**
      * Display message.
@@ -15,4 +15,8 @@ public interface IView {
      *            the message
      */
     void displayMessage(String message);
+    /**
+     * Follow Lorann.
+     */
+    void followLorann();
 }
