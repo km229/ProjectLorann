@@ -1,0 +1,25 @@
+package motionless;
+
+import element.Permeability;
+import element.Sprite;
+
+/**
+ * <h1>CrystalBall Class</h1>
+ *
+ * @author group2
+ * @version 1.0
+ */
+
+public class CrystalBall extends MotionlessElement {
+
+	/** The Constant SPRITE. */
+	private static final Sprite SPRITE = new Sprite('O', "crystal_ball.png");
+
+	/**
+	 * Instantiates a new crystalBall.
+	 */
+	public CrystalBall() {
+		super(SPRITE, Permeability.PENETRABLE);
+	}
+
+}

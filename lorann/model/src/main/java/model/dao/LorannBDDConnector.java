@@ -12,7 +12,7 @@ import java.sql.Statement;
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
-final class LorannBDDConnector {
+final class LorannBDDConnector extends AbstractDAO {
 
     /** The instance. */
     private static LorannBDDConnector instance;
