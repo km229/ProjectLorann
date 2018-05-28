@@ -1,132 +1,100 @@
 package model.dao;
 
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.imageio.ImageIO;
 
-public class LorannDAO  {
-	
-    /** The image. */
-    private Image   image;
+/**
+ * <h1>The Class ExampleDAO.</h1>
+ *
+ * @author Jean-Aymeric DIET jadiet@cesi.fr
+ * @version 1.0
+ */
+public abstract class LorannDAO extends AbstractDAO {
 
-    /** The image name. */
-    private String  imageName;
+    /** The sql example by id. */
+    private static String sqlExampleById   = "{call findExampleById(?)}";
 
-    /** The console image. */
-    private char    consoleImage;
+    /** The sql example by name.
+    private static String sqlExampleByName = "{call findExampleByName(?)}";*/
 
-    /** The is image loaded. */
-    private boolean imageLoaded;
+    /** The sql all examples. 
+    private static String sqlAllExamples   = "{call findAllExamples()}"; */
+
+    /** The id column index. */
+    private static int    idColumnIndex    = 1;
+
+    /** The name column index. */
+    private static int    nameColumnIndex  = 2;
 
     /**
-     * Instantiates a new sprite.
+     * Gets the example by id.
      *
-     * @param character
-     *            the character
-     * @param imageName
-     *            the image name
+     * @param id
+     *            the id
+     * @return the example by id
+     * @throws SQLException
+     *             the SQL exception
      */
-    public LorannDAO(final char character, final String imageName) {
-        this.setConsoleImage(character);
-        this.setImageName(imageName);
+    public static Example getExampleById(final int id) throws SQLException {
+        final CallableStatement callStatement = prepareCall(sqlExampleById);
+        Example example = null;
+        callStatement.setInt(1, id);
+        if (callStatement.execute()) {
+            final ResultSet result = callStatement.getResultSet();
+            if (result.first()) {
+                example = new Example(result.getInt(idColumnIndex), result.getString(nameColumnIndex));
+            }
+            result.close();
+        }
+        return example;
     }
 
     /**
-     * Instantiates a new sprite.
+     * Gets the example by name.
      *
-     * @param character
-     *            the character
-     */
-    public LorannDAO(final char character) {
-        this(character, "loran_b.jpg");
-    }
+     * @param name
+     *            the name
+     * @return the example by name
+     * @throws SQLException
+     *             the SQL exception
+     
+    public static Example getExampleByName(final String name) throws SQLException {
+        final CallableStatement callStatement = prepareCall(sqlExampleByName);
+        Example example = null;
+
+        callStatement.setString(1, name);
+        if (callStatement.execute()) {
+            final ResultSet result = callStatement.getResultSet();
+            if (result.first()) {
+                example = new Example(result.getInt(idColumnIndex), result.getString(nameColumnIndex));
+            }
+            result.close();
+        }
+        return example;
+    }*/
 
     /**
-     * Gets the image.
+     * Gets the all examples.
      *
-     * @return the image
-     */
-    public final Image getImage() {
-        return this.image;
-    }
+     * @return the all examples
+     * @throws SQLException
+     *             the SQL exception
+     
+    public static List<Example> getAllExamples() throws SQLException {
+        final ArrayList<Example> examples = new ArrayList<Example>();
+        final CallableStatement callStatement = prepareCall(sqlAllExamples);
+        if (callStatement.execute()) {
+            final ResultSet result = callStatement.getResultSet();
 
-    /**
-     * Loads image.
-     *
-     * @throws IOException
-     *             Signals that an I/O exception has occurred.
-     */
-    public final void loadImage() throws IOException {
-        this.setImage(ImageIO.read(new File("images/" + this.getImageName())));
-    }
-
-    /**
-     * Gets the console image.
-     *
-     * @return the consoleImage
-     */
-    public final char getConsoleImage() {
-        return this.consoleImage;
-    }
-
-    /**
-     * Sets the image.
-     *
-     * @param image
-     *            the new image
-     */
-    private void setImage(final Image image) {
-        this.image = image;
-    }
-
-    /**
-     * Sets the console image.
-     *
-     * @param consoleImage
-     *            the consoleImage to set
-     */
-    private void setConsoleImage(final char consoleImage) {
-        this.consoleImage = consoleImage;
-    }
-
-    /**
-     * Gets the image name.
-     *
-     * @return the imageName
-     */
-    public final String getImageName() {
-        return this.imageName;
-    }
-
-    /**
-     * Sets the image name.
-     *
-     * @param imageName
-     *            the imageName to set
-     */
-    private void setImageName(final String imageName) {
-        this.imageName = imageName;
-    }
-
-    /**
-     * Checks if is image loaded.
-     *
-     * @return true, if is image loaded
-     */
-    public final boolean isImageLoaded() {
-        return this.imageLoaded;
-    }
-
-    /**
-     * Sets the image loaded.
-     *
-     * @param isImageLoaded
-     *            the new image loaded
-     */
-    public final void setImageLoaded(final boolean isImageLoaded) {
-        this.imageLoaded = isImageLoaded;
-    }
-
+            for (boolean isResultLeft = result.first(); isResultLeft; isResultLeft = result.next()) {
+                examples.add(new Example(result.getInt(idColumnIndex), result.getString(nameColumnIndex)));
+            }
+            result.close();
+        }
+        return examples;
+    }*/
 }
