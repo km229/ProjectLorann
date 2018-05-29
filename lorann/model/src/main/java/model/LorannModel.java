@@ -17,19 +17,7 @@ public class LorannModel implements IModel{
 	}
 
 	@Override
-	public Example getExampleById(int id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Example getExampleByName(String name) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Example> getAllExamples() throws SQLException {
+	public Example getLevelById(int id) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

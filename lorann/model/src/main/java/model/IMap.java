@@ -15,8 +15,6 @@ public interface IMap {
 
 	Observable getObservable();
 
-	IElement getOnTheRoadXY(int x, int y);
-
 	int getWidth();
 
 }

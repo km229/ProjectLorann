@@ -12,7 +12,7 @@ import java.util.List;
 public interface IModel {
 
     /**
-     * Gets the example by id.
+     * Gets the level by id.
      *
      * @param id
      *            the id
@@ -20,25 +20,6 @@ public interface IModel {
      * @throws SQLException
      *             the SQL exception
      */
-    Example getExampleById(int id) throws SQLException;
+    Example getLevelById(int id) throws SQLException;
 
-    /**
-     * Gets the example by name.
-     *
-     * @param name
-     *            the name
-     * @return the example by name
-     * @throws SQLException
-     *             the SQL exception
-     */
-    Example getExampleByName(String name) throws SQLException;
-
-    /**
-     * Gets the all examples.
-     *
-     * @return the all examples
-     * @throws SQLException
-     *             the SQL exception
-     */
-    List<Example> getAllExamples() throws SQLException;
 }

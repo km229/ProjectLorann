@@ -117,8 +117,8 @@ public class Map extends Observable implements IMap {
 	 * @see fr.exia.insanevehicles.model.IRoad#getOnTheRoadXY(int, int)
 	 */
 	@Override
-	public final IElement getOnTheRoadXY(final int x, final int y) {
-		return this.onTheMap[x][y];
+	public final Element getOnTheMapXY(final int x, final int y) {
+		return (Element) this.onTheMap[x][y];
 	}
 
 	/**
@@ -131,7 +131,7 @@ public class Map extends Observable implements IMap {
 	 * @param y
 	 *            the y
 	 */
-	private void setOnTheRoadXY(final IElement element, final int x, final int y) {
+	private void setOnTheMapXY(final IElement element, final int x, final int y) {
 		this.onTheMap[x][y] = element;
 	}
 
@@ -156,9 +156,4 @@ public class Map extends Observable implements IMap {
 		return this;
 	}
 
-	@Override
-	public Element getOnTheMapXY(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
