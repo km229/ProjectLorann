@@ -35,8 +35,8 @@ public class Lorann extends Mobile {
 
 	private int icon = 0;
 
-	public Lorann(final int x, final int y, Sprite sprite, IMap map, Permeability permeability) throws IOException {
-		super(x, y, sprite, map, Permeability.BLOCKING);
+	public Lorann(final int x, final int y, IMap map) throws IOException {
+		super(x, y, spriteUL, map, Permeability.BLOCKING);
 		spriteUL.loadImage();
 		spriteUR.loadImage();
 		spriteBR.loadImage();

@@ -24,8 +24,6 @@ public class Map extends Observable implements IMap {
 
 	private LorannDAO dao;
 
-	private LorannBDDConnector connector;
-
 	/**
 	 * Instantiates a new road with the content of the file fileName.
 	 *
@@ -61,7 +59,7 @@ public class Map extends Observable implements IMap {
 		line = buffer.readLine();
 		while (line != null) {
 			for (int x = 0; x < line.toCharArray().length; x++) {
-				this.setOnTheRoadXY(MotionlessElementFactory.getFromFileSymbol(line.toCharArray()[x]), x, y);
+				this.setOnTheMapXY(MotionlessElementFactory.getFromFileSymbol(line.toCharArray()[x]), x, y);
 				System.out.print(this.onTheMap);
 			}
 			line = buffer.readLine();

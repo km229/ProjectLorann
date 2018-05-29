@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import mobile.IMobile;
+import mobile.Lorann;
 
 public class LorannModel implements IModel{
 	
@@ -14,6 +15,7 @@ public class LorannModel implements IModel{
 	
 	public LorannModel(final int level, final int lorannX, final int lorannY) throws IOException, SQLException{
 		this.setMap(new Map(level));
+		this.setLorann(new Lorann(lorannX, lorannY, this.getMap()));
 	}
 
 	@Override
@@ -22,6 +24,20 @@ public class LorannModel implements IModel{
 		return null;
 	}
 
+    public final IMobile getLorann() {
+        return this.lorann;
+    }
+
+    /**
+     * Sets the road.
+     *
+     * @param road
+     *            the road to set
+     */
+    private void setLorann(final IMobile lorann) {
+        this.lorann = lorann;
+    }
+	
 	public IMap getMap() {
 		return map;
 	}

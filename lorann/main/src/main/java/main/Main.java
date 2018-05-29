@@ -13,6 +13,12 @@ import model.LorannModel;
  */
 public abstract class Main {
 
+    /** The Constant startX. */
+    private static final int startX = 10;
+
+    /** The Constant startY. */
+    private static final int startY = 6;
+    
 	/**
 	 * The main method.
 	 *
@@ -22,6 +28,6 @@ public abstract class Main {
 	 * @throws IOException 
 	 */
 	public static void main(final String[] args) throws IOException, SQLException {
-		final LorannModel model = new LorannModel(1, 10, 6);
+		final LorannModel model = new LorannModel(1, startX, startY);
 	}
 }
