@@ -1,13 +1,11 @@
 package model.dao;
 
+import java.io.File;
+import java.io.InputStream;
 import java.sql.Blob;
-
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * <h1>The Class ExampleDAO.</h1>
@@ -19,9 +17,6 @@ public class LorannDAO extends AbstractDAO {
 
     /** The sql example by id. */
     private static String sqlExampleById   = "{call findExampleById(?)}";
-
-    /** The id column index. */
-    private static int    idColumnIndex    = 1;
 
     /**
      * Gets the level by id.
@@ -35,22 +30,23 @@ public class LorannDAO extends AbstractDAO {
      *             the SQL exception
      */
     
-    public LorannDAO(int i, String map){
+    public LorannDAO(){
     	super();
     }
     
-    public Blob getLevelById(final int id) throws SQLException {
+    public InputStream getLevelById(final int id) throws SQLException {
         final CallableStatement callStatement = prepareCall(sqlExampleById);
-        Blob loranndao = null;
+        InputStream streamMap = null;
         callStatement.setInt(1, id);
         if (callStatement.execute()) {
             final ResultSet result = callStatement.getResultSet();
             if (result.first()) {
-                loranndao = result.getBlob("map");
+                Blob loranndao = result.getBlob("map");
+                streamMap = loranndao.getBinaryStream();
             }
             result.close();
         }
-        return loranndao;
+        return streamMap;
     }
     
 }
