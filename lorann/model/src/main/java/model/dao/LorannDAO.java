@@ -13,7 +13,7 @@ import java.util.List;
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
-public abstract class LorannDAO extends AbstractDAO {
+public class LorannDAO extends AbstractDAO {
 
     /** The sql example by id. */
     private static String sqlExampleById   = "{call findExampleById(?)}";
@@ -32,6 +32,8 @@ public abstract class LorannDAO extends AbstractDAO {
 
     /**
      * Gets the example by id.
+     * @param string 
+     * @param i 
      *
      * @param id
      *            the id
@@ -40,22 +42,24 @@ public abstract class LorannDAO extends AbstractDAO {
      *             the SQL exception
      */
     
-    public LorannDAO(){
+    public LorannDAO(int i, String string){
     	super();
     }
     
-    public static Example getExampleById(final int id) throws SQLException {
+    public static LorannDAO getExampleById(final int id) throws SQLException {
         final CallableStatement callStatement = prepareCall(sqlExampleById);
-        Example example = null;
+        LorannDAO loranndao = null;
         callStatement.setInt(1, id);
         if (callStatement.execute()) {
             final ResultSet result = callStatement.getResultSet();
             if (result.first()) {
-                example = new Example(result.getInt(idColumnIndex), result.getString(nameColumnIndex));
+                loranndao = new LorannDAO(result.getInt(idColumnIndex), result.getString(nameColumnIndex));
             }
             result.close();
         }
-        return example;
+        return loranndao;
     }
+    
+}
 
   
