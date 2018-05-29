@@ -77,7 +77,7 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
          
          for (int x = 0; x < this.getMap().getWidth(); x = x + 1) {
              for (int y = 0; y < this.getMap().getHeight(); y = y + 1) {
-                 boardFrame.addSquare(this.map.getOnTheRoadXY(x, y), x, y);
+                 boardFrame.addSquare(this.map.getOnTheMapXY(x, y), x, y);
              }
          }
          boardFrame.addPawn(this.getLorann());
@@ -106,6 +106,12 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
                 break;
             case KeyEvent.VK_LEFT:
                 userOrder = UserOrder.LEFT;
+                break;
+            case KeyEvent.VK_UP:
+                userOrder = UserOrder.UP;
+                break;
+            case KeyEvent.VK_DOWN:
+                userOrder = UserOrder.DOWN;
                 break;
             default:
                 userOrder = UserOrder.NOP;
