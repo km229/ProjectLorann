@@ -1,7 +1,7 @@
 /**
  * Provides all classes for the view component.
  *
- * @author Groupe 2
+ * @author Group2
  * @version 1.0
  */
 package view;
