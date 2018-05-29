@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Dimension;
+
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -9,7 +10,10 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+import mobile.IMobile;
+import model.IMap;
 import showboard.BoardFrame;
+
 
 /**
  * <h1>Class LorannView</h1>
@@ -51,7 +55,7 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
     public LorannView(final IMap map, final IMobile Lorann) throws IOException {
     	this.setView(mapView);
         this.setMap(map);
-        this.setMyVehicle(Lorann);
+        this.setLorann(Lorann);
         this.getLorann().getSprite().loadImage();
     }
 

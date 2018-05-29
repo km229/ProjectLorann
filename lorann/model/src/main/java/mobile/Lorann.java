@@ -1,6 +1,7 @@
 package mobile;
 
 import java.awt.Point;
+import java.io.IOException;
 
 import element.Permeability;
 import element.Sprite;
@@ -34,9 +35,17 @@ public class Lorann extends Mobile {
 
 	private int icon = 0;
 
-	public Lorann(final int x, final int y, Sprite sprite, IMap map, Permeability permeability) {
+	public Lorann(final int x, final int y, Sprite sprite, IMap map, Permeability permeability) throws IOException {
 		super(x, y, sprite, map, Permeability.BLOCKING);
-		// TODO Auto-generated constructor stub
+		spriteUL.loadImage();
+		spriteUR.loadImage();
+		spriteBR.loadImage();
+		spriteBL.loadImage();
+		spriteTurnLeft.loadImage();
+		spriteTurnRight.loadImage();
+		spriteTurnDown.loadImage();
+		spriteTurnUp.loadImage();
+		
 	}
 
 	@Override
@@ -79,7 +88,7 @@ public class Lorann extends Mobile {
 			this.setSprite(spriteBL);
 			break;
 		}
-		this.icon=this.icon+1%4;
+		this.icon=(this.icon+1)%4;
 	}
 
 }

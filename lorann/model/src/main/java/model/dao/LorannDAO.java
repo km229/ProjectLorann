@@ -39,6 +39,11 @@ public abstract class LorannDAO extends AbstractDAO {
      * @throws SQLException
      *             the SQL exception
      */
+    
+    public LorannDAO(){
+    	super();
+    }
+    
     public static Example getExampleById(final int id) throws SQLException {
         final CallableStatement callStatement = prepareCall(sqlExampleById);
         Example example = null;
@@ -53,48 +58,4 @@ public abstract class LorannDAO extends AbstractDAO {
         return example;
     }
 
-    /**
-     * Gets the example by name.
-     *
-     * @param name
-     *            the name
-     * @return the example by name
-     * @throws SQLException
-     *             the SQL exception
-     
-    public static Example getExampleByName(final String name) throws SQLException {
-        final CallableStatement callStatement = prepareCall(sqlExampleByName);
-        Example example = null;
-
-        callStatement.setString(1, name);
-        if (callStatement.execute()) {
-            final ResultSet result = callStatement.getResultSet();
-            if (result.first()) {
-                example = new Example(result.getInt(idColumnIndex), result.getString(nameColumnIndex));
-            }
-            result.close();
-        }
-        return example;
-    }*/
-
-    /**
-     * Gets the all examples.
-     *
-     * @return the all examples
-     * @throws SQLException
-     *             the SQL exception
-     
-    public static List<Example> getAllExamples() throws SQLException {
-        final ArrayList<Example> examples = new ArrayList<Example>();
-        final CallableStatement callStatement = prepareCall(sqlAllExamples);
-        if (callStatement.execute()) {
-            final ResultSet result = callStatement.getResultSet();
-
-            for (boolean isResultLeft = result.first(); isResultLeft; isResultLeft = result.next()) {
-                examples.add(new Example(result.getInt(idColumnIndex), result.getString(nameColumnIndex)));
-            }
-            result.close();
-        }
-        return examples;
-    }*/
-}
+  

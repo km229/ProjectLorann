@@ -1,11 +1,12 @@
 package controller;
 
 import java.sql.SQLException;
+
 import java.util.List;
 
 import model.Example;
 import model.IModel;
-import view.IView;
+import view.ILorannView;
 
 /**
  * <h1>The Class ControllerFacade provides a facade of the Controller component.</h1>
@@ -13,10 +14,10 @@ import view.IView;
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
-public class ControllerFacade implements IController {
+public class LorannController implements IController {
 
     /** The view. */
-    private final IView  view;
+    private final ILorannView  view;
 
     /** The model. */
     private final IModel model;
@@ -29,7 +30,7 @@ public class ControllerFacade implements IController {
      * @param model
      *            the model
      */
-    public ControllerFacade(final IView view, final IModel model) {
+    public LorannController(final ILorannView view, final IModel model) {
         super();
         this.view = view;
         this.model = model;
@@ -60,7 +61,7 @@ public class ControllerFacade implements IController {
      *
      * @return the view
      */
-    public IView getView() {
+    public ILorannView getView() {
         return this.view;
     }
 
