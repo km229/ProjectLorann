@@ -1,5 +1,7 @@
 package model.dao;
 
+import java.sql.Blob;
+
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,21 +20,12 @@ public class LorannDAO extends AbstractDAO {
     /** The sql example by id. */
     private static String sqlExampleById   = "{call findExampleById(?)}";
 
-    /** The sql example by name.
-    private static String sqlExampleByName = "{call findExampleByName(?)}";*/
-
-    /** The sql all examples. 
-    private static String sqlAllExamples   = "{call findAllExamples()}"; */
-
     /** The id column index. */
     private static int    idColumnIndex    = 1;
 
-    /** The name column index. */
-    private static int    nameColumnIndex  = 2;
-
     /**
-     * Gets the example by id.
-     * @param string 
+     * Gets the level by id.
+     * @param blob 
      * @param i 
      *
      * @param id
@@ -42,18 +35,18 @@ public class LorannDAO extends AbstractDAO {
      *             the SQL exception
      */
     
-    public LorannDAO(int i, String string){
+    public LorannDAO(int i, String map){
     	super();
     }
     
-    public static LorannDAO getExampleById(final int id) throws SQLException {
+    public Blob getLevelById(final int id) throws SQLException {
         final CallableStatement callStatement = prepareCall(sqlExampleById);
-        LorannDAO loranndao = null;
+        Blob loranndao = null;
         callStatement.setInt(1, id);
         if (callStatement.execute()) {
             final ResultSet result = callStatement.getResultSet();
             if (result.first()) {
-                loranndao = new LorannDAO(result.getInt(idColumnIndex), result.getString(nameColumnIndex));
+                loranndao = result.getBlob("map");
             }
             result.close();
         }
