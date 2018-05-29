@@ -49,7 +49,7 @@ public class Map extends Observable implements IMap {
 	 *             Signals that an I/O exception has occurred.
 	 * @throws SQLException
 	 */
-	private synchronized void loadFile(final int level) throws IOException, SQLException {
+	private void loadFile(final int level) throws IOException, SQLException {
 		final BufferedReader buffer = new BufferedReader(new InputStreamReader(dao.getLevelById(level)));
 		String line;
 		int y = 0;
