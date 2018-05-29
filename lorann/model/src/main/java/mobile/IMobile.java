@@ -1,7 +1,6 @@
 package mobile;
 
 import java.awt.Point;
-
 import element.IElement;
 import showboard.IPawn;
 

@@ -1,5 +1,7 @@
 package element;
 
+import java.awt.Image;
+
 import javax.swing.ImageIcon;
 
 import showboard.ISquare;
@@ -33,6 +35,6 @@ public interface IElement extends ISquare{
      * @see fr.exia.showboard.ISquare#getImage()
      */
     @Override
-    ImageIcon getImage();
+    Image getImage();
 
 }

@@ -21,5 +21,5 @@ public interface ISquare {
      *
      * @return the image
      */
-    ImageIcon getImage();
+    Image getImage();
 }

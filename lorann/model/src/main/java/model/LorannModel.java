@@ -12,8 +12,8 @@ public class LorannModel implements IModel{
 	
 	private IMobile lorann;
 	
-	public LorannModel(final String filename, final int lorannX, final int lorannY) throws IOException{
-		this.setMap(new Map(filename));
+	public LorannModel(final int level, final int lorannX, final int lorannY) throws IOException, SQLException{
+		this.setMap(new Map(level));
 	}
 
 	@Override

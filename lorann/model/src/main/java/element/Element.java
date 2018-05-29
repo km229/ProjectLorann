@@ -1,6 +1,6 @@
 package element;
 
-import javax.swing.ImageIcon;
+import java.awt.Image;
 
 /**
  * <h1>Element Class</h1>
@@ -40,7 +40,7 @@ public class Element implements IElement{
      * @see fr.exia.insanevehicles.model.element.IElement#getImage()
      */
     @Override
-	public ImageIcon getImage() {
+	public Image getImage() {
 		return this.getSprite().getImage();
 	}
 	

@@ -1,6 +1,11 @@
 package element;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
@@ -12,7 +17,7 @@ import javax.swing.ImageIcon;
 public class Sprite {
 
 	/** The image. */
-	private ImageIcon image;
+	private Image image;
 
 	/** The image name. */
 	private String imageName;
@@ -41,7 +46,7 @@ public class Sprite {
 	 *
 	 * @return the image
 	 */
-	public final ImageIcon getImage() {
+	public final Image getImage() {
 		return this.image;
 	}
 
@@ -52,7 +57,7 @@ public class Sprite {
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public final void loadImage() throws IOException {
-		this.image = new ImageIcon("lorann/sprite/" + this.getImageName());
+		this.setImage(ImageIO.read(new File("images/" + this.getImageName())));
 	}
 
 	/**
@@ -67,11 +72,11 @@ public class Sprite {
 	/**
 	 * Sets the image.
 	 *
-	 * @param image
+	 * @param bufferedImage
 	 *            the new image
 	 */
-	private void setImage(ImageIcon image) {
-		this.image = image;
+	private void setImage(BufferedImage bufferedImage) {
+		this.image = bufferedImage;
 	}
 
 	/**
