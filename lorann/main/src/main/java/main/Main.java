@@ -1,6 +1,8 @@
 package main;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
 
 import model.LorannModel;
@@ -29,7 +31,25 @@ public abstract class Main {
 	 * @throws IOException 
 	 */
 	public static void main(final String[] args) throws IOException, SQLException {
-		final LorannModel model = new LorannModel(1, startX, startY);
-		final LorannView view = new LorannView(model.getMap(), model.getLorann());
+		
+		
+		System.out.println("Enter level (1-5) : ");
+
+	    try{
+	        BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
+	        String levelString = bufferRead.readLine();
+	        int level = Integer.parseInt(levelString);
+	        
+	        if(level > 0 && level < 6) {
+	        	final LorannModel model = new LorannModel(level, startX, startY);
+	        	final LorannView view = new LorannView(model.getMap(), model.getLorann());
+	        } else {
+	        	System.out.println("Invalid number."); 
+	        }
+	    }
+	    catch(IOException e)
+	    {
+	        e.printStackTrace();
+	    }
 	}
 }
