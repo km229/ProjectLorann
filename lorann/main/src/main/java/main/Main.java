@@ -30,5 +30,6 @@ public abstract class Main {
 	 */
 	public static void main(final String[] args) throws IOException, SQLException {
 		final LorannModel model = new LorannModel(1, startX, startY);
+		final LorannView view = new LorannView(model.getMap(), model.getLorann());
 	}
 }

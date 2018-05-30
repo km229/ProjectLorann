@@ -28,10 +28,10 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 	private int height = 20;
 
 	/** The Constant length. */
-	private int squareSize = 100;
+	private int squareSize = 80;
 
 	/** The Constant View */
-	private Rectangle view;
+	private int view;
 
 	/** The map. */
 	private IMap map;
@@ -56,7 +56,6 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		this.setMap(map);
 		this.setLorann(Lorann);
 		this.getLorann().getSprite().loadImage();
-		this.setView(new Rectangle(0, this.getLorann().getY(), this.getMap().getWidth(), height));
 		SwingUtilities.invokeLater(this);
 	}
 
@@ -68,14 +67,14 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 	public final void run() {
 		final BoardFrame boardFrame = new BoardFrame("Lorann");
 		boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeight()));
-		boardFrame.setDisplayFrame(this.view);
-		boardFrame.setSize(this.view.width * height, this.view.height * length);
+		boardFrame.setSize(this.map.getWidth() * squareSize, this.map.getHeight() * squareSize);
 		boardFrame.setHeightLooped(true);
+        boardFrame.addKeyListener(this);
 		boardFrame.setFocusable(true);
 		boardFrame.setFocusTraversalKeysEnabled(false);
 
-		for (int x = 0; x < this.getMap().getWidth(); x = x + 1) {
-			for (int y = 0; y < this.getMap().getHeight(); y = y + 1) {
+		for (int x = 0; x < this.getMap().getWidth(); x++) {
+			for (int y = 0; y < this.getMap().getHeight(); y++) {
 				boardFrame.addSquare(this.map.getOnTheMapXY(x, y), x, y);
 			}
 		}
@@ -157,7 +156,6 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 
 	@Override
 	public void followLorann() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -199,6 +197,15 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 	private void setLorann(final IMobile Lorann) {
 		this.Lorann = Lorann;
 	}
+	
+    /**
+     * Gets the view.
+     *
+     * @return the view
+     */
+    private int getView() {
+        return this.view;
+    }
 
 	/**
 	 * Sets the view.
@@ -206,7 +213,7 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 	 * @param rectangle
 	 *            the new view
 	 */
-	private void setView(final Rectangle view) {
+	private void setView(final int view) {
 		this.view = view;
 	}
 
