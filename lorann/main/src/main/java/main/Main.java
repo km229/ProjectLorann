@@ -32,25 +32,30 @@ public abstract class Main {
 	 */
 	public static void main(final String[] args) throws IOException, SQLException {
 		
-		
 		System.out.println("Enter level (1-5) : ");
 
-	    try{
+		try{
+	    	
 	        BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
 	        String levelString = bufferRead.readLine();
 	        int level = Integer.parseInt(levelString);
-	        
+
 	        if(level > 0 && level < 6) {
+	        	
 	        	final LorannModel model = new LorannModel(level, startX, startY);
 	        	final LorannView view = new LorannView(model.getMap(), model.getLorann());
-	        	
+	      
 	        } else {
+	        	
 	        	System.out.println("Invalid number."); 
+	        	main(args);
+	        	
 	        }
 	    }
+	    
 	    catch(IOException e)
 	    {
 	        e.printStackTrace();
-	    }
+	    } 
 	}
 }
