@@ -38,24 +38,54 @@ public abstract class Main {
 	    	
 	        BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
 	        String levelString = bufferRead.readLine();
-	        int level = Integer.parseInt(levelString);
-
-	        if(level > 0 && level < 6) {
+	        Boolean iswholeNumber = WholeNumber(levelString);
+ 
+	        if(!iswholeNumber) {
+	        	int level = Integer.parseInt(levelString);
+	        
+	        	if(level > 0 && level < 6) {
 	        	
-	        	final LorannModel model = new LorannModel(level, startX, startY);
-	        	final LorannView view = new LorannView(model.getMap(), model.getLorann());
+	        		final LorannModel model = new LorannModel(level, startX, startY);
+	        		final LorannView view = new LorannView(model.getMap(), model.getLorann());
 	      
+	        	} else {
+	        	
+	        		Error();
+	        	
+	        	}
 	        } else {
 	        	
-	        	System.out.println("Invalid number."); 
-	        	main(args);
+	        	Error();
 	        	
 	        }
-	    }
+	        
+	        
+		}
 	    
-	    catch(IOException e)
-	    {
-	        e.printStackTrace();
-	    } 
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+	
 	}
+	
+	
+	public static boolean WholeNumber(String string) {
+		try {
+			Integer.parseInt(string);
+		} catch (NumberFormatException e){
+			return true;
+		}
+ 
+		return false;
+	}
+	
+	
+	public static void Error() throws IOException, SQLException {
+		
+		System.out.println("Invalid number."); 
+		main(null);
+		
+	}
+	
 }
