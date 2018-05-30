@@ -55,16 +55,14 @@ public class Map extends Observable implements IMap {
 		this.setWidth(Integer.parseInt(line));
 		line = buffer.readLine();
 		this.setHeight(Integer.parseInt(line));
-		this.onTheMap = new IElement[this.getWidth()][this.getHeight()];
 		line = buffer.readLine();
-		while (line != null) {
-			for (int x = 0; x < line.toCharArray().length; x++) {
+		this.onTheMap = new IElement[this.getWidth()][this.getHeight()];
+		while (y != (this.getHeight() - 1)) {
+			for (int x = 0; x != (this.getWidth() -1); x++) {
 				this.setOnTheMapXY(MotionlessElementFactory.getFromFileSymbol(line.toCharArray()[x]), x, y);
-				System.out.print(this.onTheMap);
 			}
 			line = buffer.readLine();
 			y++;
-			System.out.println("");
 		}
 		buffer.close();
 	}
@@ -129,7 +127,7 @@ public class Map extends Observable implements IMap {
 	 * @param y
 	 *            the y
 	 */
-	private void setOnTheMapXY(final IElement element, final int x, final int y) {
+	public void setOnTheMapXY(final IElement element, final int x, final int y) {
 		this.onTheMap[x][y] = element;
 	}
 
