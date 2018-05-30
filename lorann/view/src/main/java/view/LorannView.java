@@ -12,8 +12,8 @@ import java.awt.event.KeyListener;
 
 import controller.IOrderPerformer;
 import controller.UserOrder;
-import mobile.IMobile;
 import model.IMap;
+import model.IMobile;
 import showboard.BoardFrame;
 
 /**

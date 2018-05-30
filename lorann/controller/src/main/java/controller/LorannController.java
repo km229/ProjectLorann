@@ -16,11 +16,12 @@ import view.ILorannView;
  */
 public class LorannController implements ILorannController,IOrderPerformer {
 
+	private static final int     speed = 300;
     /** The view. */
-    private final ILorannView  view;
+    private ILorannView  view;
 
     /** The model. */
-    private final IModel model;
+    private IModel model;
 
     private UserOrder            stackOrder;
     /**
@@ -60,14 +61,14 @@ public class LorannController implements ILorannController,IOrderPerformer {
                     this.getModel().getLorann().moveLeft();
                     break;
                 case UP:
-                    this.getModel().getLorann().moveUP();
+                    this.getModel().getLorann().moveUp();
                     break;
                 case DOWN:
                     this.getModel().getLorann().moveDown();
                     break;
-                case MAGIC:
-                    this.getModel().getLorann().MagicFire(); // "Magicfire"  need rename 
-                    break;
+             /*   case SPACE:
+                    this.getModel().getLorann().Magic(); // "Magic"  need rename 
+                    break; */
                 case NOP:
                 default:
                     this.getModel().getLorann().doNothing();
@@ -77,7 +78,7 @@ public class LorannController implements ILorannController,IOrderPerformer {
             if (this.getModel().getLorann().isAlive()) {
                 this.getModel().getLorann().moveDown();
             }
-            this.getView().followMyVehicle();
+            this.getView().followLorann();
         }
         this.getView().displayMessage("GAME OVER");
     }
@@ -96,7 +97,7 @@ public class LorannController implements ILorannController,IOrderPerformer {
         this.setStackOrder(userOrder);
     }
     
-    private void setView(final ILorannController view) {
+    private void setView(final ILorannView view) {
         this.view = view;
     }
     /**
@@ -108,7 +109,7 @@ public class LorannController implements ILorannController,IOrderPerformer {
         return this.model;
     }
     
-    private void setModel(final ILorannController model) {
+    private void setModel(final IModel model) {
         this.model = model;
     }
     

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import mobile.IMobile;
 import mobile.Lorann;
 
 public class LorannModel implements IModel{
@@ -19,12 +18,11 @@ public class LorannModel implements IModel{
 	}
 
 	@Override
-	public Example getLevelById(int id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public void getLevelById(int id) throws SQLException {
+
 	}
 
-    public final IMobile getLorann() {
+    public IMobile getLorann() {
         return this.lorann;
     }
 
@@ -34,8 +32,8 @@ public class LorannModel implements IModel{
      * @param road
      *            the road to set
      */
-    private void setLorann(final IMobile lorann) {
-        this.lorann = lorann;
+    private void setLorann(Lorann lorann) {
+        this.lorann = (IMobile) lorann;
     }
 	
 	public IMap getMap() {

@@ -17,5 +17,7 @@ public enum UserOrder {
     MAGIC,
     
     /** The nop. */
-    NOP
+    NOP, 
+    
+    SPACE,
 }
