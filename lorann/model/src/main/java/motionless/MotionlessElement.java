@@ -1,8 +1,8 @@
 package motionless;
 
 import element.Element;
-import element.Permeability;
-import element.Sprite;
+import model.Permeability;
+import model.Sprite;
 
 /**
  * <h1>MotionlessElement Class</h1>

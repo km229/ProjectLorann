@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import java.awt.Dimension;
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -23,9 +22,6 @@ import showboard.BoardFrame;
  * @version 1.0
  */
 public class LorannView implements Runnable, KeyListener, ILorannView {
-
-	/** The Constant height. */
-	private int height = 20;
 
 	/** The Constant length. */
 	private int squareSize = 80;

@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.Observable;
 
 import element.Element;
-import element.IElement;
 import motionless.MotionlessElementFactory;
 import model.dao.*;
 

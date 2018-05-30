@@ -2,6 +2,10 @@ package element;
 
 import java.awt.Image;
 
+import model.IElement;
+import model.Permeability;
+import model.Sprite;
+
 /**
  * <h1>Element Class</h1>
  *

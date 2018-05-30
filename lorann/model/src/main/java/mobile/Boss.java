@@ -3,9 +3,9 @@ package mobile;
 import java.awt.Point;
 import java.io.IOException;
 
-import element.Permeability;
-import element.Sprite;
 import model.IMap;
+import model.Permeability;
+import model.Sprite;
 
 public class Boss extends Mobile {
 	

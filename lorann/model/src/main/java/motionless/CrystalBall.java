@@ -1,7 +1,7 @@
 package motionless;
 
-import element.Permeability;
-import element.Sprite;
+import model.Permeability;
+import model.Sprite;
 
 /**
  * <h1>CrystalBall Class</h1>

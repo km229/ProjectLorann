@@ -1,4 +1,4 @@
-package element;
+package model;
 
 /**
  * <h1>Permeability Enum</h1>

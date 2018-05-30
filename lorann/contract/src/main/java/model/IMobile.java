@@ -1,7 +1,7 @@
 package model;
 
 import java.awt.Point;
-import element.IElement;
+
 import showboard.IPawn;
 
 public interface IMobile extends IPawn, IElement {
