@@ -43,6 +43,7 @@ public abstract class Main {
 	        if(level > 0 && level < 6) {
 	        	final LorannModel model = new LorannModel(level, startX, startY);
 	        	final LorannView view = new LorannView(model.getMap(), model.getLorann());
+	        	
 	        } else {
 	        	System.out.println("Invalid number."); 
 	        }
