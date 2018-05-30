@@ -22,7 +22,7 @@ public class Map extends Observable implements IMap {
 	/** The on the road. */
 	private IElement[][] onTheMap;
 
-	private LorannDAO dao;
+	private LorannDAO dao = new LorannDAO();
 
 	/**
 	 * Instantiates a new road with the content of the file fileName.

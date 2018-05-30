@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import model.LorannModel;
+import view.LorannView;
 
 /**
  * <h1>Class Main</h1>
@@ -29,5 +30,6 @@ public abstract class Main {
 	 */
 	public static void main(final String[] args) throws IOException, SQLException {
 		final LorannModel model = new LorannModel(1, startX, startY);
+		final LorannView view = new LorannView(model.getMap(), model.getLorann());
 	}
 }

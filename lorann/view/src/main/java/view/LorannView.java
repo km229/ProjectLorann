@@ -28,7 +28,7 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 	private int height = 20;
 
 	/** The Constant length. */
-	private int length = 12;
+	private int squareSize = 100;
 
 	/** The Constant View */
 	private Rectangle view;
@@ -258,7 +258,12 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 
 	}
 
-	public Rectangle getView() {
-		return this.view;
+	public int getSquareSize() {
+		return squareSize;
 	}
+
+	public void setSquareSize(int squareSize) {
+		this.squareSize = squareSize;
+	}
+	
 }
