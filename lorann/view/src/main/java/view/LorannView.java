@@ -56,7 +56,7 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		this.setMap(map);
 		this.setLorann(Lorann);
 		this.getLorann().getSprite().loadImage();
-		SwingUtilities.invokeLater(this);
+		SwingUtilities.invokeLater(this); 
 	}
 
 	/*
@@ -178,9 +178,12 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 	 */
 	private void setMap(final IMap map) throws IOException {
 		this.map = map;
-		for (int x = 0; x < this.getMap().getWidth(); x++) {
-			for (int y = 0; y < this.getMap().getHeight(); y++) {
+		for (int x = 0; x < (this.getMap().getWidth() - 1); x++) {
+			for (int y = 0; y < (this.getMap().getHeight() - 1); y++) {
+				
 				this.getMap().getOnTheMapXY(x, y).getSprite().loadImage();
+				
+				
 			}
 		}
 	}
