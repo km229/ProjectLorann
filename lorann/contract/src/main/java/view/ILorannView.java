@@ -17,10 +17,6 @@ public interface ILorannView {
      *            the message
      */
     void displayMessage(String message);
-    /**
-     * Follow Lorann.
-     */
-    void followLorann();
 	void keyReleased(KeyEvent keyEvent);
 	void keyTyped(KeyEvent keyEvent);
 }

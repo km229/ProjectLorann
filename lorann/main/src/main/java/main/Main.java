@@ -88,11 +88,9 @@ public abstract class Main {
 	}
 	
 	public static void Start(int level) throws IOException, SQLException {
-		
+		System.out.println("Game start!");		
 		final LorannModel model = new LorannModel(level, startX, startY);
 		final LorannView view = new LorannView(model.getMap(), model.getLorann());
-		System.out.println("Game start!");
-		
 	}
 	
 }

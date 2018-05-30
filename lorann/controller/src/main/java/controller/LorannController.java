@@ -14,9 +14,9 @@ import view.ILorannView;
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
-public class LorannController implements ILorannController,IOrderPerformer {
+public class LorannController implements ILorannController, IOrderPerformer {
 
-	private static final int     speed = 300;
+	private static final int     speed = 500;
     /** The view. */
     private ILorannView  view;
 
@@ -33,21 +33,10 @@ public class LorannController implements ILorannController,IOrderPerformer {
      *            the model
      */
     public LorannController(final ILorannView view, final IModel model) {
-        super();
         this.view = view;
         this.model = model;
+        this.clearStackOrder();
     }
-
-    /**
-     * Start.
-     *
-     * @throws SQLException
-     *             the SQL exception
-     */
-    public void start() throws SQLException {
-
-    }
-
     
     @Override
     public final void play() throws InterruptedException {
@@ -67,7 +56,7 @@ public class LorannController implements ILorannController,IOrderPerformer {
                     this.getModel().getLorann().moveDown();
                     break;
              /*   case SPACE:
-                    this.getModel().getLorann().Magic(); // "Magic"  need rename 
+                    this.getModel().getLorann().magic(); // "Magic"  need rename 
                     break; */
                 case NOP:
                 default:
@@ -75,10 +64,7 @@ public class LorannController implements ILorannController,IOrderPerformer {
                     break;
             }
             this.clearStackOrder();
-            if (this.getModel().getLorann().isAlive()) {
-                this.getModel().getLorann().moveDown();
-            }
-            this.getView().followLorann();
+
         }
         this.getView().displayMessage("GAME OVER");
     }
@@ -142,8 +128,7 @@ public class LorannController implements ILorannController,IOrderPerformer {
     
 	@Override
 	public IOrderPerformer getOrderPeformer() {
-		// TODO Auto-generated method stub
-		return null;
+		return this;
 	}
 	
 	

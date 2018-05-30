@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -25,9 +26,8 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 
 	/** The Constant length. */
 	private int squareSize = 80;
-
-	/** The Constant View */
-	private int view;
+	
+	private Rectangle closeView;
 
 	/** The map. */
 	private IMap map;
@@ -52,7 +52,8 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		this.setMap(map);
 		this.setLorann(Lorann);
 		this.getLorann().getSprite().loadImage();
-		SwingUtilities.invokeLater(this); 
+		this.setCloseView(new Rectangle(0, this.getLorann().getY(), this.getMap().getWidth(), this.getMap().getHeight()));
+		SwingUtilities.invokeLater(this);
 	}
 
 	/*
@@ -64,6 +65,7 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		final BoardFrame boardFrame = new BoardFrame("Lorann");
 		boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeight()));
 		boardFrame.setSize(this.map.getWidth() * squareSize, this.map.getHeight() * squareSize);
+		boardFrame.setDisplayFrame(this.closeView);
 		boardFrame.setHeightLooped(true);
         boardFrame.addKeyListener(this);
 		boardFrame.setFocusable(true);
@@ -77,7 +79,6 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		boardFrame.addPawn(this.getLorann());
 
 		this.getMap().getObservable().addObserver(boardFrame.getObserver());
-		this.followLorann();
 
 		boardFrame.setVisible(true);
 	}
@@ -138,23 +139,6 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
-	 */
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
-	 */
-
-	@Override
-	public void followLorann() {
-
-	}
-
 	/**
 	 * Gets the map.
 	 *
@@ -195,25 +179,6 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 
 	private void setLorann(final IMobile Lorann) {
 		this.Lorann = Lorann;
-	}
-	
-    /**
-     * Gets the view.
-     *
-     * @return the view
-     */
-    private int getView() {
-        return this.view;
-    }
-
-	/**
-	 * Sets the view.
-	 *
-	 * @param rectangle
-	 *            the new view
-	 */
-	private void setView(final int view) {
-		this.view = view;
 	}
 
 	/**
@@ -272,4 +237,11 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		this.squareSize = squareSize;
 	}
 	
+	public Rectangle getCloseView() {
+		return closeView;
+	}
+
+	public void setCloseView(Rectangle closeView) {
+		this.closeView = closeView;
+	}
 }
