@@ -45,9 +45,8 @@ public abstract class Main {
 	        
 	        	if(level > 0 && level < 6) {
 	        	
-	        		final LorannModel model = new LorannModel(level, startX, startY);
-	        		final LorannView view = new LorannView(model.getMap(), model.getLorann());
-	      
+	        		Start(level);
+	        		
 	        	} else {
 	        	
 	        		Error();
@@ -85,6 +84,14 @@ public abstract class Main {
 		
 		System.out.println("Invalid number."); 
 		main(null);
+		
+	}
+	
+	public static void Start(int level) throws IOException, SQLException {
+		
+		final LorannModel model = new LorannModel(level, startX, startY);
+		final LorannView view = new LorannView(model.getMap(), model.getLorann());
+		System.out.println("Game start!");
 		
 	}
 	
