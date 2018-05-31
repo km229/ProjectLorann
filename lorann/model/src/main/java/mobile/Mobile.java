@@ -2,10 +2,6 @@ package mobile;
 
 import java.awt.Point;
 import java.io.IOException;
-import java.rmi.Remote;
-
-import com.mysql.cj.x.protobuf.MysqlxCrud.Delete;
-
 import element.Element;
 import model.IMap;
 import model.IMobile;
@@ -88,6 +84,16 @@ public abstract class Mobile extends Element implements IMobile {
 			this.setVictory(true);
 			this.die();
 		}
+		else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.PURSE) {
+			try {
+				this.setHasFoundThePurse(this.getX(), this.getY()-1);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			this.setY(this.getY() - 1);
+			this.setHasMoved();
+		}
 	}
 
 	@Override
@@ -102,13 +108,23 @@ public abstract class Mobile extends Element implements IMobile {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				
 			}
+			
 			this.setX(this.getX() - 1);
 			this.setHasMoved();
 		}else if (this.getMap().getOnTheMapXY(this.getX()-1, this.getY()).getPermeability() == Permeability.END){
 			this.setY(this.getX() - 1);
 			this.setVictory(true);
 			this.die();
+		}
+		else if (this.getMap().getOnTheMapXY(this.getX()-1, this.getY()).getPermeability() == Permeability.PURSE) {
+			try {
+				this.setHasFoundThePurse(this.getX()-1, this.getY());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}
@@ -133,6 +149,14 @@ public abstract class Mobile extends Element implements IMobile {
 			this.setVictory(true);
 			this.die();
 		}
+		else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.PURSE) {
+			try {
+				this.setHasFoundThePurse(this.getX(), this.getY()+1);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
@@ -155,6 +179,14 @@ public abstract class Mobile extends Element implements IMobile {
 			this.setY(this.getX() + 1);
 			this.setVictory(true);
 			this.die();
+		}
+		else if (this.getMap().getOnTheMapXY(this.getX()+1, this.getY()).getPermeability() == Permeability.PURSE) {
+			try {
+				this.setHasFoundThePurse(this.getX()+1, this.getY());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -204,6 +236,11 @@ public abstract class Mobile extends Element implements IMobile {
 		}
 	}
 
+	protected void setHasFoundThePurse(int x, int y) throws IOException {
+		this.getMap().getOnTheMapXY(x, y).setSprite(new Sprite(' ', "ground.png"));
+		this.getMap().getOnTheMapXY(x, y).getSprite().loadImage();
+	}
+		
 	public IMap getMap() {
 		return map;
 	}

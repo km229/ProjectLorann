@@ -15,6 +15,8 @@ public enum Permeability {
     
     CRYSTALBALL,
     
+    PURSE,
+    
     MONSTER,
     
     END;
