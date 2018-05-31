@@ -8,20 +8,22 @@ import java.util.List;
 import mobile.Boss;
 import mobile.Lorann;
 
-public class LorannModel implements IModel {
-
+public class LorannModel implements IModel{
+	
 	private IMap map;
-
+	
 	private IMobile lorann;
-
-	private IMobile boss;
-
+	
 	private Point position;
-
-	public LorannModel(final int level) throws IOException, SQLException {
-		this.setSpawnXY(level);
+	
+	public LorannModel(final int level, final int lorannX, final int lorannY) throws IOException, SQLException{
 		this.setMap(new Map(level));
-		this.setLorann(new Lorann(position.x, position.y, this.getMap()));
+		this.setLorann(new Lorann(lorannX, lorannY, this.getMap()));
+	}
+	
+	public LorannModel(final int level) throws IOException, SQLException{
+		this.setMap(new Map(level));
+		this.setLorann(new Lorann(this.position.x, this.position.y, this.getMap()));
 	}
 
 	@Override
@@ -29,25 +31,14 @@ public class LorannModel implements IModel {
 
 	}
 
-	public IMobile getLorann() {
-		return this.lorann;
-	}
-
-	/**
-	 * Sets the road.
-	 *
-	 * @param road
-	 *            the road to set
-	 */
-
-	public IMobile getBoss() {
-		return this.boss;
-	}
-
-	private void setLorann(Lorann lorann) {
-		this.lorann = (IMobile) lorann;
-	}
-
+    public IMobile getLorann() {
+        return this.lorann;
+    }
+    
+    private void setLorann(Lorann lorann) {
+        this.lorann = (IMobile) lorann;
+    }
+	
 	public IMap getMap() {
 		return map;
 	}
@@ -56,30 +47,5 @@ public class LorannModel implements IModel {
 		this.map = map;
 	}
 
-	private void setSpawnXY(int level) {
-
-		if (level == 1) {
-
-			this.position.setLocation(17, 5);
-
-		} else if (level == 2) {
-
-			this.position.setLocation(18, 1);
-
-		} else if (level == 3) {
-
-			this.position.setLocation(1, 1);
-
-		} else if (level == 4) {
-
-			this.position.setLocation(2, 2);
-
-		} else if (level == 5) {
-
-			this.position.setLocation(1, 6);
-
-		}
-
-	}
 
 }
