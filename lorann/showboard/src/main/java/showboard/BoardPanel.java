@@ -168,9 +168,7 @@ class BoardPanel extends JPanel implements Observer {
             image = this.noImage;
         } else {
             image = this.squares[realX][realY].getImage();
-            System.out.println("Image"+realX+":"+realY);
             if (image == null) {
-            	System.out.println("ko");
                 image = this.noImage;
             }
         }

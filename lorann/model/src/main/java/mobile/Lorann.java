@@ -45,7 +45,6 @@ public class Lorann extends Mobile {
 		spriteTurnRight.loadImage();
 		spriteTurnDown.loadImage();
 		spriteTurnUp.loadImage();
-		
 	}
 
 	@Override

@@ -62,27 +62,35 @@ public abstract class Mobile extends Element implements IMobile {
 	}
 
 	@Override
-	public void moveUp() {
-		this.setY(this.getY() - 1);
-		this.setHasMoved();
+	public void moveUp() {	
+		if(this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.PENETRABLE) {
+			this.setY(this.getY() - 1);
+			this.setHasMoved();
+		}
 	}
 
 	@Override
 	public void moveLeft() {
-		this.setX(this.getX() - 1);
-		this.setHasMoved();
+		if(this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.PENETRABLE) {	
+			this.setX(this.getX() - 1);
+			this.setHasMoved();
+		}
 	}
 
 	@Override
 	public void moveDown() {
-		this.setY(this.getY() + 1);
-		this.setHasMoved();
+		if(this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.PENETRABLE) {
+			this.setY(this.getY() + 1);
+			this.setHasMoved();
+		}
 	}
 
 	@Override
 	public void moveRight() {
-		this.setX(this.getX() + 1);
-		this.setHasMoved();
+		if(this.getMap().getOnTheMapXY(this.getX()+ 1, this.getY()).getPermeability() == Permeability.PENETRABLE) {
+			this.setX(this.getX() + 1);
+			this.setHasMoved();
+		}
 	}
 
 	@Override
@@ -105,6 +113,7 @@ public abstract class Mobile extends Element implements IMobile {
 	}
 
 	public final int getY() {
+		
 		return this.getPosition().y;
 	}
 

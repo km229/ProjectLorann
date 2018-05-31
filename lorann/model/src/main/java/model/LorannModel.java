@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import mobile.Boss;
 import mobile.Lorann;
 
 public class LorannModel implements IModel{
@@ -11,6 +12,8 @@ public class LorannModel implements IModel{
 	private IMap map;
 	
 	private IMobile lorann;
+	
+	private IMobile boss;
 	
 	public LorannModel(final int level, final int lorannX, final int lorannY) throws IOException, SQLException{
 		this.setMap(new Map(level));
@@ -32,6 +35,11 @@ public class LorannModel implements IModel{
      * @param road
      *            the road to set
      */
+    
+    public IMobile getBoss() {
+        return this.boss;
+    }
+    
     private void setLorann(Lorann lorann) {
         this.lorann = (IMobile) lorann;
     }
@@ -43,5 +51,6 @@ public class LorannModel implements IModel{
 	public void setMap(IMap map) {
 		this.map = map;
 	}
+
 
 }

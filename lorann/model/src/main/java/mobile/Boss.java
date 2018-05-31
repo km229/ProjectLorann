@@ -22,49 +22,41 @@ public class Boss extends Mobile {
 		return behaviour;
 	}
 	
-	private static final Sprite spriteImageBoss = new Sprite(getBehaviour().getID(), getBehaviour().getImage());
+	private static final Sprite spriteImageBoss = new Sprite('1', "monster_1.png");
 
-	public Boss(int x, int y, Sprite sprite, IMap map, Permeability permeability, int lorannX, int lorannY) throws IOException {
-		super(x, y, spriteImageBoss, map, Permeability.BLOCKING);
+	public Boss(IMap map) throws IOException {
+		super(spriteImageBoss, map, Permeability.BLOCKING);
 		spriteImageBoss.loadImage();
-		int speed = 1;
-		
-		int diffX = lorannX - x;
-		int diffY = lorannY - y;
-
-		float angle = (float)Math.atan2(diffY, diffX);
-
-		x += speed * Math.cos(angle);
-		y += speed * Math.sin(angle);
-		
-		if(lorannX)
-		
 	}
 
 	@Override
 	public void moveUp() {
 		super.moveUp();
+		this.setSprite(spriteImageBoss);
 	}
 
 	@Override
 	public void moveLeft() {
 		super.moveLeft();
+		this.setSprite(spriteImageBoss);
 	}
 
 	@Override
 	public void moveDown() {
 		super.moveDown();
+		this.setSprite(spriteImageBoss);
 	}
 
 	@Override
 	public void moveRight() {
 		super.moveRight();
+		this.setSprite(spriteImageBoss);
 	}
+
+	@Override
+	public void doNothing() {
 	
 	
-	public void moveAround() {
-		
-		
 	}
 	
 

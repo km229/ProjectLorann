@@ -64,7 +64,7 @@ public class Element implements IElement{
     @Override
 	public Permeability getPermeability() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.permeability;
 	}
 
     /**
