@@ -2,6 +2,7 @@ package view;
 
 import java.io.IOException;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
@@ -71,6 +72,9 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		boardFrame.setFocusable(true);
 		boardFrame.setFocusTraversalKeysEnabled(false);
 		boardFrame.setLocationRelativeTo(null);
+		boardFrame.pack();
+		boardFrame.setDefaultLookAndFeelDecorated(true);
+		boardFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		for (int x = 0; x < this.getMap().getWidth(); x++) {
 			for (int y = 0; y < this.getMap().getHeight(); y++) {

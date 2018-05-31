@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 
+import controller.LorannController;
 import model.LorannModel;
 import view.LorannView;
 
@@ -29,8 +30,9 @@ public abstract class Main {
 	 *            the arguments
 	 * @throws SQLException 
 	 * @throws IOException 
+	 * @throws InterruptedException 
 	 */
-	public static void main(final String[] args) throws IOException, SQLException {
+	public static void main(final String[] args) throws IOException, SQLException, InterruptedException {
 		
 		System.out.println("Enter level (1-5) : ");
 
@@ -80,17 +82,20 @@ public abstract class Main {
 	}
 	
 	
-	public static void Error() throws IOException, SQLException {
+	public static void Error() throws IOException, SQLException, InterruptedException {
 		
 		System.out.println("Invalid number."); 
 		main(null);
 		
 	}
 	
-	public static void Start(int level) throws IOException, SQLException {
+	public static void Start(int level) throws IOException, SQLException, InterruptedException {
 		System.out.println("Game start!");		
 		final LorannModel model = new LorannModel(level, startX, startY);
 		final LorannView view = new LorannView(model.getMap(), model.getLorann());
+		final LorannController controller = new LorannController(view, model);
+        view.setOrderPerformer(controller.getOrderPeformer());
+        controller.play();
 	}
 	
 }
