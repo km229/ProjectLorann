@@ -19,7 +19,7 @@ public class Purse extends MotionlessElement {
 	 * Instantiates a new purse.
 	 */
 	public Purse() {
-		super(SPRITE, Permeability.PENETRABLE);
+		super(SPRITE, Permeability.PURSE);
 	}
 
 }

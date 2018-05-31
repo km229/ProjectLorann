@@ -10,7 +10,6 @@ import model.Sprite;
 
 import showboard.IBoard;
 
-
 public abstract class Mobile extends Element implements IMobile {
 
 	/**
@@ -26,8 +25,8 @@ public abstract class Mobile extends Element implements IMobile {
 
 	/** The board. */
 	private IBoard board;
-	
-	private Boolean victory=false;
+
+	private Boolean victory = false;
 
 	/**
 	 * Instantiates a new mobile.
@@ -70,28 +69,28 @@ public abstract class Mobile extends Element implements IMobile {
 		if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.PENETRABLE) {
 			this.setY(this.getY() - 1);
 			this.setHasMoved();
-		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.CRYSTALBALL) {
+		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1)
+				.getPermeability() == Permeability.CRYSTALBALL) {
 			try {
-				this.setHasFoundTheCrystal(this.getX(), this.getY()-1);
+				this.setHasFoundTheCrystal(this.getX(), this.getY() - 1);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			this.setY(this.getY() - 1);
 			this.setHasMoved();
-		}else if (this.getMap().getOnTheMapXY(this.getX(), this.getY()-1).getPermeability() == Permeability.END){
+		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.END) {
 			this.setY(this.getY() - 1);
 			this.setVictory(true);
 			this.die();
-		}
-		else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.PURSE) {
+		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.PURSE) {
+			this.setY(this.getY() - 1);
 			try {
-				this.setHasFoundThePurse(this.getX(), this.getY()-1);
+				this.setHasFoundThePurse(this.getX(), this.getY());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			this.setY(this.getY() - 1);
 			this.setHasMoved();
 		}
 	}
@@ -104,29 +103,29 @@ public abstract class Mobile extends Element implements IMobile {
 		} else if (this.getMap().getOnTheMapXY(this.getX() - 1, this.getY())
 				.getPermeability() == Permeability.CRYSTALBALL) {
 			try {
-				this.setHasFoundTheCrystal(this.getX()-1, this.getY());
+				this.setHasFoundTheCrystal(this.getX() - 1, this.getY());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				
+
 			}
-			
 			this.setX(this.getX() - 1);
 			this.setHasMoved();
-		}else if (this.getMap().getOnTheMapXY(this.getX()-1, this.getY()).getPermeability() == Permeability.END){
-			this.setY(this.getX() - 1);
+		} else if (this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.END) {
+			this.setX(this.getX() - 1);
 			this.setVictory(true);
 			this.die();
-		}
-		else if (this.getMap().getOnTheMapXY(this.getX()-1, this.getY()).getPermeability() == Permeability.PURSE) {
+		} else if (this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.PURSE) {
+			this.setX(this.getX() - 1);
 			try {
-				this.setHasFoundThePurse(this.getX()-1, this.getY());
+				this.setHasFoundThePurse(this.getX(), this.getY());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			this.setHasMoved();
 		}
-		
+
 	}
 
 	@Override
@@ -137,25 +136,26 @@ public abstract class Mobile extends Element implements IMobile {
 		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1)
 				.getPermeability() == Permeability.CRYSTALBALL) {
 			try {
-				this.setHasFoundTheCrystal(this.getX(), this.getY()+1);
+				this.setHasFoundTheCrystal(this.getX(), this.getY() + 1);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			this.setY(this.getY() + 1);
 			this.setHasMoved();
-		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.END){
+		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.END) {
 			this.setY(this.getY() + 1);
 			this.setVictory(true);
 			this.die();
-		}
-		else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.PURSE) {
+		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY()).getPermeability() == Permeability.PURSE) {
+			this.setY(this.getY() + 1);
 			try {
-				this.setHasFoundThePurse(this.getX(), this.getY()+1);
+				this.setHasFoundThePurse(this.getX(), this.getY());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			this.setHasMoved();
 		}
 	}
 
@@ -167,26 +167,27 @@ public abstract class Mobile extends Element implements IMobile {
 		} else if (this.getMap().getOnTheMapXY(this.getX() + 1, this.getY())
 				.getPermeability() == Permeability.CRYSTALBALL) {
 			try {
-				this.setHasFoundTheCrystal(this.getX()+1, this.getY());
+				this.setHasFoundTheCrystal(this.getX() + 1, this.getY());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			this.setX(this.getX() + 1);
 			this.setHasMoved();
-			
-		}else if (this.getMap().getOnTheMapXY(this.getX()+1, this.getY()).getPermeability() == Permeability.END){
-			this.setY(this.getX() + 1);
+
+		} else if (this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() == Permeability.END) {
+			this.setX(this.getX() + 1);
 			this.setVictory(true);
 			this.die();
-		}
-		else if (this.getMap().getOnTheMapXY(this.getX()+1, this.getY()).getPermeability() == Permeability.PURSE) {
+		} else if (this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() == Permeability.PURSE) {
+			this.setX(this.getX() + 1);
 			try {
-				this.setHasFoundThePurse(this.getX()+1, this.getY());
+				this.setHasFoundThePurse(this.getX(), this.getY());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			this.setHasMoved();
 		}
 	}
 
@@ -225,9 +226,9 @@ public abstract class Mobile extends Element implements IMobile {
 	protected void setHasFoundTheCrystal(int x, int y) throws IOException {
 		this.getMap().getOnTheMapXY(x, y).setSprite(new Sprite(' ', "ground.png"));
 		this.getMap().getOnTheMapXY(x, y).getSprite().loadImage();
-		for(int i=0; i<this.getMap().getWidth(); i++){
-			for(int j=0; j<this.getMap().getHeight(); j++){
-				if(this.getMap().getOnTheMapXY(i, j).getSprite().getConsoleImage() == 'g'){
+		for (int i = 0; i < this.getMap().getWidth(); i++) {
+			for (int j = 0; j < this.getMap().getHeight(); j++) {
+				if (this.getMap().getOnTheMapXY(i, j).getSprite().getConsoleImage() == 'g') {
 					this.getMap().getOnTheMapXY(i, j).setSprite(new Sprite('G', "gate_open.png"));
 					this.getMap().getOnTheMapXY(i, j).getSprite().loadImage();
 					this.getMap().getOnTheMapXY(i, j).setPermeability(Permeability.END);
@@ -240,7 +241,7 @@ public abstract class Mobile extends Element implements IMobile {
 		this.getMap().getOnTheMapXY(x, y).setSprite(new Sprite(' ', "ground.png"));
 		this.getMap().getOnTheMapXY(x, y).getSprite().loadImage();
 	}
-		
+
 	public IMap getMap() {
 		return map;
 	}
