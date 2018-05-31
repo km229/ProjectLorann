@@ -1,11 +1,11 @@
 package model;
 
 import java.awt.Point;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import mobile.Boss;
 import mobile.Lorann;
 
 public class LorannModel implements IModel{

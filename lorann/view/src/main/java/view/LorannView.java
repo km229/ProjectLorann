@@ -88,24 +88,6 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		boardFrame.setVisible(true);
 	}
 
-	/**
-	 * Prints the road and the player's vehicle in the console.
-	 *
-	 * @param yStart
-	 *            the y start
-	 */
-	public final void show(final int yStart) {
-		int y = yStart % this.getMap().getHeight();
-		for (int x = 0; x < this.getMap().getWidth(); x++) {
-			if ((x == this.getLorann().getX()) && (y == yStart)) {
-				System.out.print(this.getLorann().getSprite().getConsoleImage());
-			} else {
-				System.out.print(this.getMap().getOnTheMapXY(x, y).getSprite().getConsoleImage());
-			}
-			y = (y + 1) % this.getMap().getHeight();
-			System.out.print("\n");
-		}
-	}
 
 	/**
 	 * Key code to user order.

@@ -1,13 +1,19 @@
 package mobile;
 
 import java.awt.Point;
+import java.io.IOException;
+import java.rmi.Remote;
+
+import com.mysql.cj.x.protobuf.MysqlxCrud.Delete;
 
 import element.Element;
 import model.IMap;
 import model.IMobile;
 import model.Permeability;
 import model.Sprite;
+
 import showboard.IBoard;
+
 
 public abstract class Mobile extends Element implements IMobile {
 
@@ -24,6 +30,8 @@ public abstract class Mobile extends Element implements IMobile {
 
 	/** The board. */
 	private IBoard board;
+	
+	private Boolean victory=false;
 
 	/**
 	 * Instantiates a new mobile.
@@ -62,42 +70,92 @@ public abstract class Mobile extends Element implements IMobile {
 	}
 
 	@Override
-	public void moveUp() {	
-		if(this.getY() != 0) {
-			if(this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.PENETRABLE) {
-				this.setY(this.getY() - 1);
-				this.setHasMoved();
+	public void moveUp() {
+		if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.PENETRABLE) {
+			this.setY(this.getY() - 1);
+			this.setHasMoved();
+		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1)
+				.getPermeability() == Permeability.CRYSTALBALL) {
+			try {
+				this.setHasFoundTheCrystal(this.getX(), this.getY()-1);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			this.setY(this.getY() - 1);
+			this.setHasMoved();
+		}else if (this.getMap().getOnTheMapXY(this.getX(), this.getY()-1).getPermeability() == Permeability.END){
+			this.setY(this.getY() - 1);
+			this.setVictory(true);
+			this.die();
 		}
 	}
 
 	@Override
 	public void moveLeft() {
-		if(this.getX() != 0) {
-			if(this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.PENETRABLE) {	
-				this.setX(this.getX() - 1);
-				this.setHasMoved();
+		if (this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.PENETRABLE) {
+			this.setX(this.getX() - 1);
+			this.setHasMoved();
+		} else if (this.getMap().getOnTheMapXY(this.getX() - 1, this.getY())
+				.getPermeability() == Permeability.CRYSTALBALL) {
+			try {
+				this.setHasFoundTheCrystal(this.getX()-1, this.getY());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			this.setX(this.getX() - 1);
+			this.setHasMoved();
+		}else if (this.getMap().getOnTheMapXY(this.getX()-1, this.getY()).getPermeability() == Permeability.END){
+			this.setY(this.getX() - 1);
+			this.setVictory(true);
+			this.die();
 		}
+		
 	}
 
 	@Override
 	public void moveDown() {
-		if(this.getY() != this.getMap().getHeight()) {
-			if(this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.PENETRABLE) {
-				this.setY(this.getY() + 1);
-				this.setHasMoved();
+		if (this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.PENETRABLE) {
+			this.setY(this.getY() + 1);
+			this.setHasMoved();
+		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1)
+				.getPermeability() == Permeability.CRYSTALBALL) {
+			try {
+				this.setHasFoundTheCrystal(this.getX(), this.getY()+1);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			this.setY(this.getY() + 1);
+			this.setHasMoved();
+		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.END){
+			this.setY(this.getY() + 1);
+			this.setVictory(true);
+			this.die();
 		}
 	}
 
 	@Override
 	public void moveRight() {
-		if(this.getX() != this.getMap().getWidth()) {
-			if(this.getMap().getOnTheMapXY(this.getX()+ 1, this.getY()).getPermeability() == Permeability.PENETRABLE) {
-				this.setX(this.getX() + 1);
-				this.setHasMoved();
+		if (this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() == Permeability.PENETRABLE) {
+			this.setX(this.getX() + 1);
+			this.setHasMoved();
+		} else if (this.getMap().getOnTheMapXY(this.getX() + 1, this.getY())
+				.getPermeability() == Permeability.CRYSTALBALL) {
+			try {
+				this.setHasFoundTheCrystal(this.getX()+1, this.getY());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			this.setX(this.getX() + 1);
+			this.setHasMoved();
+			
+		}else if (this.getMap().getOnTheMapXY(this.getX()+1, this.getY()).getPermeability() == Permeability.END){
+			this.setY(this.getX() + 1);
+			this.setVictory(true);
+			this.die();
 		}
 	}
 
@@ -121,7 +179,7 @@ public abstract class Mobile extends Element implements IMobile {
 	}
 
 	public final int getY() {
-		
+
 		return this.getPosition().y;
 	}
 
@@ -131,6 +189,20 @@ public abstract class Mobile extends Element implements IMobile {
 
 	protected void setHasMoved() {
 		this.getMap().setMobileHasChanged();
+	}
+
+	protected void setHasFoundTheCrystal(int x, int y) throws IOException {
+		this.getMap().getOnTheMapXY(x, y).setSprite(new Sprite(' ', "ground.png"));
+		this.getMap().getOnTheMapXY(x, y).getSprite().loadImage();
+		for(int i=0; i<this.getMap().getWidth(); i++){
+			for(int j=0; j<this.getMap().getHeight(); j++){
+				if(this.getMap().getOnTheMapXY(i, j).getSprite().getConsoleImage() == 'g'){
+					this.getMap().getOnTheMapXY(i, j).setSprite(new Sprite('G', "gate_open.png"));
+					this.getMap().getOnTheMapXY(i, j).getSprite().loadImage();
+					this.getMap().getOnTheMapXY(i, j).setPermeability(Permeability.END);
+				}
+			}
+		}
 	}
 
 	public IMap getMap() {
@@ -153,30 +225,39 @@ public abstract class Mobile extends Element implements IMobile {
 	public Boolean isCrashed() {
 		return false;
 		// TODO Auto-generated method stub
-		//return this.getMap().getOnTheMapXY(this.getX(), this.getY()).getPermeability() == Permeability.BLOCKING;
+		// return this.getMap().getOnTheMapXY(this.getX(),
+		// this.getY()).getPermeability() == Permeability.BLOCKING;
 	}
 
-    public Point getPosition() {
-        return this.position;
-    }
+	public Point getPosition() {
+		return this.position;
+	}
 
-    /**
-     * Sets the position.
-     *
-     * @param position
-     *            the position to set
-     */
-    public void setPosition(final Point position) {
-        this.position = position;
-    }
+	/**
+	 * Sets the position.
+	 *
+	 * @param position
+	 *            the position to set
+	 */
+	public void setPosition(final Point position) {
+		this.position = position;
+	}
 
-    /**
-     * Gets the board.
-     *
-     * @return the board
-     */
-    protected IBoard getBoard() {
-        return this.board;
-    }
-	
+	/**
+	 * Gets the board.
+	 *
+	 * @return the board
+	 */
+	protected IBoard getBoard() {
+		return this.board;
+	}
+
+	public Boolean getVictory() {
+		return victory;
+	}
+
+	public void setVictory(Boolean victory) {
+		this.victory = victory;
+	}
+
 }
