@@ -90,4 +90,9 @@ public class Lorann extends Mobile {
 		this.icon=(this.icon+1)%4;
 	}
 
+	@Override
+	public Boolean victory() {
+		return super.getVictory();
+	}
+
 }

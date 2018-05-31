@@ -74,8 +74,7 @@ public abstract class Mobile extends Element implements IMobile {
 		if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.PENETRABLE) {
 			this.setY(this.getY() - 1);
 			this.setHasMoved();
-		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1)
-				.getPermeability() == Permeability.CRYSTALBALL) {
+		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.CRYSTALBALL) {
 			try {
 				this.setHasFoundTheCrystal(this.getX(), this.getY()-1);
 			} catch (IOException e) {

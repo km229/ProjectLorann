@@ -19,7 +19,7 @@ public class CrystalBall extends MotionlessElement {
 	 * Instantiates a new crystalBall.
 	 */
 	public CrystalBall() {
-		super(SPRITE, Permeability.PENETRABLE);
+		super(SPRITE, Permeability.CRYSTALBALL);
 	}
 
 }
