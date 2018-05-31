@@ -17,10 +17,10 @@ import view.LorannView;
 public abstract class Main {
 
     /** The Constant startX. */
-    private static final int startX = 10;
+    private static final int startX = 0;
 
     /** The Constant startY. */
-    private static final int startY = 6;
+    private static final int startY = 0;
     
 	/**
 	 * The main method.

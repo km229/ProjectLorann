@@ -56,8 +56,8 @@ public class Map extends Observable implements IMap {
 		this.setHeight(Integer.parseInt(line));
 		this.onTheMap = new IElement[this.getWidth()][this.getHeight()];
 		line = buffer.readLine();
-		while (y != ((this.getHeight())- 1)) {
-			for (int x = 0; x != (this.getWidth() -1); x++) {
+		while (y != ((this.getHeight()))) {
+			for (int x = 0; x != (this.getWidth()); x++) {
 				this.setOnTheMapXY(MotionlessElementFactory.getFromFileSymbol(line.toCharArray()[x]), x, y);
 
 				

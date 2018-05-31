@@ -70,6 +70,7 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
         boardFrame.addKeyListener(this);
 		boardFrame.setFocusable(true);
 		boardFrame.setFocusTraversalKeysEnabled(false);
+		boardFrame.setLocationRelativeTo(null);
 
 		for (int x = 0; x < this.getMap().getWidth(); x++) {
 			for (int y = 0; y < this.getMap().getHeight(); y++) {
