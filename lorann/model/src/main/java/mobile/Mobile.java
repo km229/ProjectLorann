@@ -63,33 +63,41 @@ public abstract class Mobile extends Element implements IMobile {
 
 	@Override
 	public void moveUp() {	
-		if(this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.PENETRABLE) {
-			this.setY(this.getY() - 1);
-			this.setHasMoved();
+		if(this.getY() != 0) {
+			if(this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.PENETRABLE) {
+				this.setY(this.getY() - 1);
+				this.setHasMoved();
+			}
 		}
 	}
 
 	@Override
 	public void moveLeft() {
-		if(this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.PENETRABLE) {	
-			this.setX(this.getX() - 1);
-			this.setHasMoved();
+		if(this.getX() != 0) {
+			if(this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.PENETRABLE) {	
+				this.setX(this.getX() - 1);
+				this.setHasMoved();
+			}
 		}
 	}
 
 	@Override
 	public void moveDown() {
-		if(this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.PENETRABLE) {
-			this.setY(this.getY() + 1);
-			this.setHasMoved();
+		if(this.getY() != this.getMap().getHeight()) {
+			if(this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.PENETRABLE) {
+				this.setY(this.getY() + 1);
+				this.setHasMoved();
+			}
 		}
 	}
 
 	@Override
 	public void moveRight() {
-		if(this.getMap().getOnTheMapXY(this.getX()+ 1, this.getY()).getPermeability() == Permeability.PENETRABLE) {
-			this.setX(this.getX() + 1);
-			this.setHasMoved();
+		if(this.getX() != this.getMap().getWidth()) {
+			if(this.getMap().getOnTheMapXY(this.getX()+ 1, this.getY()).getPermeability() == Permeability.PENETRABLE) {
+				this.setX(this.getX() + 1);
+				this.setHasMoved();
+			}
 		}
 	}
 
@@ -99,7 +107,7 @@ public abstract class Mobile extends Element implements IMobile {
 	}
 
 	protected void setY(int y) {
-		this.getPosition().y = (y + this.getMap().getHeight()) % this.getMap().getHeight();
+		this.getPosition().y = y;
 		if (this.isCrashed()) {
 			this.die();
 		}
@@ -143,8 +151,9 @@ public abstract class Mobile extends Element implements IMobile {
 	}
 
 	public Boolean isCrashed() {
+		return false;
 		// TODO Auto-generated method stub
-		return this.getMap().getOnTheMapXY(this.getX(), this.getY()).getPermeability() == Permeability.BLOCKING;
+		//return this.getMap().getOnTheMapXY(this.getX(), this.getY()).getPermeability() == Permeability.BLOCKING;
 	}
 
     public Point getPosition() {

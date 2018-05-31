@@ -53,7 +53,7 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		this.setMap(map);
 		this.setLorann(Lorann);
 		this.getLorann().getSprite().loadImage();
-		this.setCloseView(new Rectangle(0, this.getLorann().getY(), this.getMap().getWidth(), this.getMap().getHeight()));
+		this.setCloseView(new Rectangle(0, 0, this.getMap().getWidth(), this.getMap().getHeight()));
 		SwingUtilities.invokeLater(this);
 	}
 
@@ -67,7 +67,7 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeight()));
 		boardFrame.setSize(this.map.getWidth() * squareSize, this.map.getHeight() * squareSize);
 		boardFrame.setDisplayFrame(this.closeView);
-		boardFrame.setHeightLooped(true);
+		boardFrame.setHeightLooped(false);
         boardFrame.addKeyListener(this);
 		boardFrame.setFocusable(true);
 		boardFrame.setFocusTraversalKeysEnabled(false);
@@ -80,6 +80,7 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 				boardFrame.addSquare(this.map.getOnTheMapXY(x, y), x, y);
 			}
 		}
+		
 		boardFrame.addPawn(this.getLorann());
 
 		this.getMap().getObservable().addObserver(boardFrame.getObserver());

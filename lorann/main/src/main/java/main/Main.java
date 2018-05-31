@@ -18,10 +18,10 @@ import view.LorannView;
 public abstract class Main {
 
     /** The Constant startX. */
-    private static final int startX = 0;
+    private static int startX = 0;
 
     /** The Constant startY. */
-    private static final int startY = 0;
+    private static int startY = 0;
     
 	/**
 	 * The main method.
@@ -46,7 +46,7 @@ public abstract class Main {
 	        	int level = Integer.parseInt(levelString);
 	        
 	        	if(level > 0 && level < 6) {
-	        	
+	        		setSpawnXY(level);
 	        		Start(level);
 	        		
 	        	} else {
@@ -68,6 +68,42 @@ public abstract class Main {
 			e.printStackTrace();
 		}
 	
+	}
+	
+	public static void setSpawnXY(int level) {
+		
+		if(level == 1) 
+		{
+			
+			startX = 17;
+			startY = 5;
+			
+		} else if(level == 2) 
+		{
+			
+			startX = 18;
+			startY = 1;
+			
+		} else if(level == 3) 
+		{
+			
+			startX = 1;
+			startY = 1;
+			
+		} else if(level == 4) 
+		{
+			
+			startX = 2;
+			startY = 2;
+			
+		} else if(level == 5) 
+		{
+			
+			startX = 1;
+			startY = 6;
+			
+		}
+		
 	}
 	
 	
