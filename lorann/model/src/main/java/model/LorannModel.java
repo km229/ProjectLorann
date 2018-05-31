@@ -15,10 +15,12 @@ public class LorannModel implements IModel{
 	
 	private IMobile boss;
 	
-	public LorannModel(final int level, final int lorannX, final int lorannY) throws IOException, SQLException{
+	public LorannModel(final int level) throws IOException, SQLException{
+		this.setSpawnXY(level);
 		this.setMap(new Map(level));
 		this.setLorann(new Lorann(lorannX, lorannY, this.getMap()));
 	}
+
 
 	@Override
 	public void getLevelById(int id) throws SQLException {
@@ -52,5 +54,9 @@ public class LorannModel implements IModel{
 		this.map = map;
 	}
 
+	private void setSpawnXY(int level) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

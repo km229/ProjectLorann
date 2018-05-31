@@ -127,7 +127,7 @@ public abstract class Main {
 	
 	public static void Start(int level) throws IOException, SQLException, InterruptedException {
 		System.out.println("Game start!");		
-		final LorannModel model = new LorannModel(level, startX, startY);
+		final LorannModel model = new LorannModel(level);
 		final LorannView view = new LorannView(model.getMap(), model.getLorann());
 		final LorannController controller = new LorannController(view, model);
         view.setOrderPerformer(controller.getOrderPeformer());
