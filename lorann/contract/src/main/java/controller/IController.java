@@ -1,9 +1,9 @@
 package controller;
 
 /**
- * <h1>The Interface IController.</h1>
+ * <h1>Interface IController</h1>
  * 
- * @author Jean-Aymeric DIET jadiet@cesi.fr
+ * @author group2
  * @version 1.0
  */
 public interface IController {

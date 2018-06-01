@@ -17,6 +17,21 @@ public interface ILorannView {
      *            the message
      */
     void displayMessage(String message);
+  
+    
+    /**
+     * Display message.
+     *
+     * @param message
+     *            the message
+     */
 	void keyReleased(KeyEvent keyEvent);
+	
+    /**
+     * Display message.
+     *
+     * @param message
+     *            the message
+     */
 	void keyTyped(KeyEvent keyEvent);
 }

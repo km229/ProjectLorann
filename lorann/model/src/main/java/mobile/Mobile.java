@@ -276,6 +276,7 @@ public abstract class Mobile extends Element implements IMobile {
 	 */
 	protected void setHasFoundTheCrystal(int x, int y) throws IOException {
 		this.getMap().getOnTheMapXY(x, y).setSprite(new Sprite(' ', "ground.png"));
+		this.getMap().getOnTheMapXY(x, y).setPermeability(Permeability.PENETRABLE);
 		this.getMap().getOnTheMapXY(x, y).getSprite().loadImage();
 		this.score+=500;
 		for (int i = 0; i < this.getMap().getWidth(); i++) {

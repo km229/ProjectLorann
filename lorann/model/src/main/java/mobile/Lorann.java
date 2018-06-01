@@ -35,6 +35,8 @@ public class Lorann extends Mobile {
 
 	/** The icon. */
 	private int icon = 0;
+	
+	private String moving;
 
 	/**
 	 * @param x
@@ -63,6 +65,7 @@ public class Lorann extends Mobile {
 	@Override
 	public void moveUp() {
 		super.moveUp();
+		moving = "UP";
 		this.setSprite(spriteTurnUp);
 	}
 
@@ -72,6 +75,7 @@ public class Lorann extends Mobile {
 	@Override
 	public void moveLeft() {
 		super.moveLeft();
+		moving = "LEFT";
 		this.setSprite(spriteTurnLeft);
 	}
 
@@ -81,6 +85,7 @@ public class Lorann extends Mobile {
 	@Override
 	public void moveDown() {
 		super.moveDown();
+		moving = "DOWN";
 		this.setSprite(spriteTurnDown);
 	}
 
@@ -90,6 +95,7 @@ public class Lorann extends Mobile {
 	@Override
 	public void moveRight() {
 		super.moveRight();
+		moving = "RIGHT";
 		this.setSprite(spriteTurnRight);
 	}
 
@@ -140,9 +146,7 @@ public class Lorann extends Mobile {
 	 */
 	@Override
 	public void magic() throws IOException {
-		// TODO Auto-generated method stub
-		FireBall fb = new FireBall(this.getX(), this.getY(), spriteUL, this.getMap(), this.getPermeability());
-		
+
 	}
 
 }

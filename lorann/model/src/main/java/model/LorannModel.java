@@ -6,11 +6,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import mobile.FireBall;
 import mobile.Lorann;
 import mobile.Monster1;
 import mobile.Monster2;
 import mobile.Monster3;
 import mobile.Monster4;
+import showboard.BoardFrame;
 
 /**
  * <h1>LorannModel Class</h1>
@@ -115,7 +117,7 @@ public class LorannModel implements IModel {
 		switch (level) {
 		case 1:
 			this.monster1 = new Monster1(7, 5, map, Permeability.MONSTER);
-			this.monster2 = new Monster2(5, 4, map, Permeability.MONSTER);
+			this.monster2 = new Monster2(3, 4, map, Permeability.MONSTER);
 			break;
 		case 2:
 			this.monster1 = new Monster1(10, 4, map, Permeability.MONSTER);
@@ -175,5 +177,6 @@ public class LorannModel implements IModel {
 			break;
 		}
 	}
+
 
 }

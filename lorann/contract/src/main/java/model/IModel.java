@@ -5,9 +5,9 @@ import java.util.List;
 
 
 /**
- * <h1>The Interface IModel.</h1>
+ * <h1>Interface IModel</h1>
  *
- * @author Jean-Aymeric DIET jadiet@cesi.fr
+ * @author group2
  * @version 1.0
  */
 public interface IModel {
@@ -23,8 +23,20 @@ public interface IModel {
      */
     void getLevelById(int id) throws SQLException;
 
+    /**
+     * Return Lorann.
+     *
+     * @return lorann
+     */
 	IMobile getLorann();
 	
+    /**
+     * Gets the monster wanted.
+     *
+     * @param monster
+     *            the monster
+     * @return the monster selected
+     */
 	IMobile getMonster(int monster);
 
 }

@@ -1,9 +1,15 @@
 package model;
 
-import java.awt.Point;
 import java.io.IOException;
-
 import showboard.IPawn;
+
+/**
+ * <h1>Interface IMobile</h1>
+ *
+ * @author group2
+ * @version 1.0
+ * @see IPawn, IElement
+ */
 
 public interface IMobile extends IPawn, IElement {
 
@@ -70,6 +76,8 @@ public interface IMobile extends IPawn, IElement {
     String victory();
 
 	/**
+	 * Checks the power of Lorann.
+	 * 
 	 * @throws IOException
 	 */
 	void magic() throws IOException;
