@@ -7,7 +7,8 @@ import model.IMap;
 import model.IMobile;
 import model.Permeability;
 import model.Sprite;
-
+import motionless.Ground;
+import motionless.MotionlessElementFactory;
 import showboard.IBoard;
 
 public abstract class Mobile extends Element implements IMobile {
@@ -84,13 +85,13 @@ public abstract class Mobile extends Element implements IMobile {
 			this.setVictory(true);
 			this.die();
 		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.PURSE) {
-			this.setY(this.getY() - 1);
 			try {
-				this.setHasFoundThePurse(this.getX(), this.getY());
+				this.setHasFoundThePurse(this.getX(), this.getY()-1);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			this.setY(this.getY() - 1);
 			this.setHasMoved();
 		}
 	}
@@ -116,13 +117,13 @@ public abstract class Mobile extends Element implements IMobile {
 			this.setVictory(true);
 			this.die();
 		} else if (this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.PURSE) {
-			this.setX(this.getX() - 1);
 			try {
-				this.setHasFoundThePurse(this.getX(), this.getY());
+				this.setHasFoundThePurse(this.getX()-1, this.getY());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			this.setX(this.getX() - 1);
 			this.setHasMoved();
 		}
 
@@ -147,14 +148,14 @@ public abstract class Mobile extends Element implements IMobile {
 			this.setY(this.getY() + 1);
 			this.setVictory(true);
 			this.die();
-		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY()).getPermeability() == Permeability.PURSE) {
-			this.setY(this.getY() + 1);
+		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY()+1).getPermeability() == Permeability.PURSE) {
 			try {
-				this.setHasFoundThePurse(this.getX(), this.getY());
+				this.setHasFoundThePurse(this.getX(), this.getY()+1);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			this.setY(this.getY() + 1);
 			this.setHasMoved();
 		}
 	}
@@ -180,13 +181,13 @@ public abstract class Mobile extends Element implements IMobile {
 			this.setVictory(true);
 			this.die();
 		} else if (this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() == Permeability.PURSE) {
-			this.setX(this.getX() + 1);
 			try {
-				this.setHasFoundThePurse(this.getX(), this.getY());
+				this.setHasFoundThePurse(this.getX()+1, this.getY());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			this.setX(this.getX() + 1);
 			this.setHasMoved();
 		}
 	}
@@ -238,7 +239,9 @@ public abstract class Mobile extends Element implements IMobile {
 	}
 
 	protected void setHasFoundThePurse(int x, int y) throws IOException {
-		this.getMap().getOnTheMapXY(x, y).setSprite(new Sprite(' ', "ground.png"));
+		this.getMap().dieOntheMapXY(x, y);
+		this.getMap().setOnTheMapXY(new Ground(), x, y);
+		System.out.println(this.getMap().getOnTheMapXY(x, y).getSprite().getImageName()+" "+x+" "+y);
 		this.getMap().getOnTheMapXY(x, y).getSprite().loadImage();
 	}
 

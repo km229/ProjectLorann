@@ -15,5 +15,9 @@ public interface IMap {
 	Observable getObservable();
 
 	int getWidth();
+	
+	void setOnTheMapXY(final IElement element, final int x, final int y);
+	
+	void dieOntheMapXY(final int x, final int Y);
 
 }

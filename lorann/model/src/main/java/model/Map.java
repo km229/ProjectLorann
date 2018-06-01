@@ -154,5 +154,9 @@ public class Map extends Observable implements IMap {
 	public Observable getObservable() {
 		return this;
 	}
+	
+	public void dieOntheMapXY(final int x, final int y){
+		this.onTheMap[x][y]=null;
+	}
 
 }

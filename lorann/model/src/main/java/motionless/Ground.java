@@ -21,5 +21,8 @@ public class Ground extends MotionlessElement {
 	public Ground() {
 		super(SPRITE, Permeability.PENETRABLE);
 	}
-
+	
+	public Sprite getSprite() {
+		return SPRITE;
+	}
 }
