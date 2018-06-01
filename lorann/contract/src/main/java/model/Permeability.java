@@ -12,12 +12,12 @@ public enum Permeability {
     BLOCKING,
     /** The penetrable. */
     PENETRABLE, 
-    
+    /** The crystal ball. */
     CRYSTALBALL,
-    
+    /** The purse. */
     PURSE,
-    
+    /** The monster. */
     MONSTER,
-    
+    /** The end. */
     END;
 }

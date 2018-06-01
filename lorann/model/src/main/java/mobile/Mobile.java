@@ -73,8 +73,8 @@ public abstract class Mobile extends Element implements IMobile {
 		this.setY(y);
 	}
 
-	/** 
-	 * 
+	
+	/* (non-Javadoc)
 	 * @see model.IMobile#moveUp()
 	 */
 	@Override
@@ -107,7 +107,8 @@ public abstract class Mobile extends Element implements IMobile {
 			this.setHasMoved();
 		}
 	}
-	/**
+	
+	/* (non-Javadoc)
 	 * @see model.IMobile#moveLeft()
 	 */
 	@Override
@@ -143,10 +144,10 @@ public abstract class Mobile extends Element implements IMobile {
 
 	}
 
-	/**
+	
+	/* (non-Javadoc)
 	 * @see model.IMobile#moveDown()
 	 */
-	
 	@Override
 	public void moveDown() {
 		if (this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.PENETRABLE) {
@@ -178,10 +179,11 @@ public abstract class Mobile extends Element implements IMobile {
 		}
 	}
 	
-	/**
+	
+	
+	/* (non-Javadoc)
 	 * @see model.IMobile#moveRight()
 	 */
-	
 	@Override
 	public void moveRight() {
 		if (this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() == Permeability.PENETRABLE) {
@@ -214,7 +216,8 @@ public abstract class Mobile extends Element implements IMobile {
 		}
 	}
 
-	/**
+
+	/* (non-Javadoc)
 	 * @see model.IMobile#doNothing()
 	 */
 	@Override
@@ -244,25 +247,24 @@ public abstract class Mobile extends Element implements IMobile {
 		}
 	}
 
-	/** 
+
+	/* (non-Javadoc)
 	 * @see model.IMobile#getY()
-	 * 		Gets the position Y of lorann
 	 */
 	public final int getY() {
 
 		return this.getPosition().y;
 	}
 
-	/** 
+	/* (non-Javadoc)
 	 * @see model.IMobile#getX()
-	 * 		Gets the position X of lorann
 	 */
 	public final int getX() {
 		return this.getPosition().x;
 	}
 
 	/**
-	 * 
+	 *  Set lorann has moved
 	 */
 	protected void setHasMoved() {
 		this.getMap().setMobileHasChanged();
@@ -322,7 +324,8 @@ public abstract class Mobile extends Element implements IMobile {
 		this.map = map;
 	}
 
-	/**
+	
+	/* (non-Javadoc)
 	 * @see model.IMobile#isAlive()
 	 */
 	public Boolean isAlive() {
@@ -337,7 +340,8 @@ public abstract class Mobile extends Element implements IMobile {
 		this.setHasMoved();
 	}
 
-	/**
+
+	/* (non-Javadoc)
 	 * @see model.IMobile#isCrashed()
 	 */
 	public Boolean isCrashed() {
@@ -347,7 +351,7 @@ public abstract class Mobile extends Element implements IMobile {
 		// this.getY()).getPermeability() == Permeability.BLOCKING;
 	}
 
-	/**
+	/* (non-Javadoc)
 	 * @see showboard.IPawn#getPosition()
 	 */
 	public Point getPosition() {
