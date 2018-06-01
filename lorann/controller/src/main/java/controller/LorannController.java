@@ -12,18 +12,24 @@ import view.ILorannView;
  * <h1>The Class ControllerFacade provides a facade of the Controller
  * component.</h1>
  *
- * @author Jean-Aymeric DIET jadiet@cesi.fr
+ * @author group2
  * @version 1.0
+ */
+/**
+ * @author moaw2
+ *
  */
 public class LorannController implements ILorannController, IOrderPerformer {
 
+	/** The speed. */
 	private static final int speed = 200;
 	/** The view. */
 	private ILorannView view;
 
 	/** The model. */
 	private IModel model;
-
+	
+	/** The stackOrder. */
 	private UserOrder stackOrder;
 
 	/**

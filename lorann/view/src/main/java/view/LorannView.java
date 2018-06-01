@@ -25,9 +25,10 @@ import showboard.BoardFrame;
  */
 public class LorannView implements Runnable, KeyListener, ILorannView {
 
-	/** The Constant length. */
+	/** The Constant squareSize. */
 	private int squareSize = 80;
 	
+	/** The closeView.  */
 	private Rectangle closeView;
 
 	/** The map. */
@@ -186,51 +187,70 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 	 * @param orderPerformer
 	 *            the new order performer
 	 */
-	/*
-	 * public final void setOrderPerformer(final IOrderPerformer orderPerformer)
-	 * { this.orderPerformer = orderPerformer; }
-	 */
-
+	
 	public final void setOrderPerformer(final IOrderPerformer orderPerformer) {
 		this.orderPerformer = orderPerformer;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * fr.exia.insanevehicles.view.IInsaneVehiclesView#displayMessage(java.lang.
-	 * String)
+	
+	/* (non-Javadoc)
+	 * @see view.ILorannView#displayMessage(java.lang.String)
 	 */
 	@Override
 	public final void displayMessage(final String message) {
 		JOptionPane.showMessageDialog(null, message);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
+	 */
 	@Override
 	public void keyReleased(KeyEvent keyEvent) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
+	 */
 	@Override
 	public void keyTyped(KeyEvent keyEvent) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * Gets the squareSize
+	 * 
+	 * @return squareSize
+	 */
 	public int getSquareSize() {
 		return squareSize;
 	}
 
+	/**
+	 * Sets the squareSize
+	 * 
+	 * @param squareSize
+	 */
 	public void setSquareSize(int squareSize) {
 		this.squareSize = squareSize;
 	}
 	
+	/**
+	 * Gets the closeView
+	 * 
+	 * @return closeView
+	 */
 	public Rectangle getCloseView() {
 		return closeView;
 	}
 
+	/**
+	 * Sets the closeView
+	 * 
+	 * @param closeView
+	 */
 	public void setCloseView(Rectangle closeView) {
 		this.closeView = closeView;
 	}
