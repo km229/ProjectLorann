@@ -1,4 +1,4 @@
-package main;
+package view;
 
 import static org.junit.Assert.*;
 
@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class MainTest {
+public class LorannViewTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -27,77 +27,67 @@ public class MainTest {
 	}
 
 	@Test
-	public void testMain() {
+	public void testLorannView() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testWholeNumber() {
+	public void testRun() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testError() {
+	public void testKeyPressed() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testStart() {
+	public void testSetOrderPerformer() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetClass() {
+	public void testDisplayMessage() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testHashCode() {
+	public void testKeyReleased() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testEquals() {
+	public void testKeyTyped() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testClone() {
+	public void testGetSquareSize() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testToString() {
+	public void testSetSquareSize() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testNotify() {
+	public void testGetCloseView() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testNotifyAll() {
+	public void testSetCloseView() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testWaitLong() {
+	public void testGetMonster() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testWaitLongInt() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testWait() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testFinalize() {
+	public void testSetMonster() {
 		fail("Not yet implemented");
 	}
 

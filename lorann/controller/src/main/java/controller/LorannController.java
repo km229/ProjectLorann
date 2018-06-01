@@ -23,7 +23,7 @@ import view.ILorannView;
 public class LorannController implements ILorannController, IOrderPerformer {
 
 	/** The speed. */
-	private static final int speed = 200;
+	private static final int speed = 150;
 	/** The view. */
 	private ILorannView view;
 

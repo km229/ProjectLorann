@@ -103,16 +103,28 @@ public class Lorann extends Mobile {
 			this.setSprite(spriteUL);
 			break;
 		case 1:
-			this.setSprite(spriteUR);
+			this.setSprite(spriteTurnUp);
 			break;
 		case 2:
-			this.setSprite(spriteBR);
+			this.setSprite(spriteTurnRight);
 			break;
 		case 3:
+			this.setSprite(spriteBR);
+			break;
+		case 4:
+			this.setSprite(spriteTurnDown);
+			break;
+		case 5:
 			this.setSprite(spriteBL);
 			break;
+		case 6:
+			this.setSprite(spriteTurnLeft);
+			break;
+		case 7:
+			this.setSprite(spriteUL);
+			break;
 		}
-		this.icon=(this.icon+1)%4;
+		this.icon=(this.icon+1)%8;
 	}
 
 	/* (non-Javadoc)
