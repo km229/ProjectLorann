@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Point;
+import java.io.IOException;
 
 import showboard.IPawn;
 
@@ -62,5 +63,7 @@ public interface IMobile extends IPawn, IElement {
     Boolean isCrashed();
     
     Boolean victory();
+
+	void magic() throws IOException;
 
 }

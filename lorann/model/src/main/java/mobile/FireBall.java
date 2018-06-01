@@ -10,8 +10,9 @@ public class FireBall extends Mobile {
 	
 	private static Sprite fireball;
 
+
 	public FireBall(int x, int y, Sprite sprite, IMap map, Permeability permeability) throws IOException {
-		super(x, y, sprite, map, permeability);
+		super(x + 1, y + 1, sprite, map, permeability);
 		FireBall.setFireball(sprite);
 		fireball.loadImage();
 	}
@@ -28,6 +29,12 @@ public class FireBall extends Mobile {
 	public Boolean victory() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void magic() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

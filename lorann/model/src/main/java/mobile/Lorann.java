@@ -95,4 +95,11 @@ public class Lorann extends Mobile {
 		return super.getVictory();
 	}
 
+	@Override
+	public void magic() throws IOException {
+		// TODO Auto-generated method stub
+		FireBall fb = new FireBall(this.getX(), this.getY(), spriteUL, this.getMap(), this.getPermeability());
+		
+	}
+
 }

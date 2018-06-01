@@ -41,7 +41,7 @@ public class LorannController implements ILorannController, IOrderPerformer {
 	}
 
 	@Override
-	public final void play() throws InterruptedException {
+	public final void play() throws InterruptedException, IOException {
 		while (this.getModel().getLorann().isAlive()) {
 			Thread.sleep(speed);
 			switch (this.getStackOrder()) {
@@ -57,10 +57,10 @@ public class LorannController implements ILorannController, IOrderPerformer {
 			case DOWN:
 				this.getModel().getLorann().moveDown();
 				break;
-			/*
-			 * case SPACE: this.getModel().getLorann().magic(); // "Magic" need
-			 * rename break;
-			 */
+			
+			case SPACE: this.getModel().getLorann().magic(); // "Magic" need
+				break;
+			 
 			case NOP:
 			default:
 				this.getModel().getLorann().doNothing();

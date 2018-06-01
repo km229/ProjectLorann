@@ -111,6 +111,9 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		case KeyEvent.VK_DOWN:
 			userOrder = UserOrder.DOWN;
 			break;
+		case KeyEvent.VK_SPACE:
+			userOrder = UserOrder.SPACE;
+			break;
 		default:
 			userOrder = UserOrder.NOP;
 			break;
