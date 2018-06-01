@@ -11,22 +11,30 @@ import motionless.Ground;
 import motionless.MotionlessElementFactory;
 import showboard.IBoard;
 
+/**
+ * 
+ * <h1>Class Mobile</h1>
+ *  
+ * @author group2
+ *
+ * @version 1.0
+ */
+
 public abstract class Mobile extends Element implements IMobile {
 
-	/**
-	 * The x.
-	 */
+	/** The position.*/
 	private Point position;
 
 	/** The alive. */
 	private Boolean alive = true;
 
-	/** The road. */
+	/** The map. */
 	private IMap map;
 
 	/** The board. */
 	private IBoard board;
-
+	
+	/** The victory */
 	private Boolean victory = false;
 
 	/**
@@ -34,8 +42,8 @@ public abstract class Mobile extends Element implements IMobile {
 	 *
 	 * @param sprite
 	 *            the sprite
-	 * @param road
-	 *            the road
+	 * @param map
+	 *            the map
 	 * @param permeability
 	 *            the permeability
 	 */
@@ -54,8 +62,8 @@ public abstract class Mobile extends Element implements IMobile {
 	 *            the y
 	 * @param sprite
 	 *            the sprite
-	 * @param road
-	 *            the road
+	 * @param map
+	 *            the map
 	 * @param permeability
 	 *            the permeability
 	 */
@@ -65,6 +73,10 @@ public abstract class Mobile extends Element implements IMobile {
 		this.setY(y);
 	}
 
+	/** 
+	 * 
+	 * @see model.IMobile#moveUp()
+	 */
 	@Override
 	public void moveUp() {
 		if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.PENETRABLE) {
@@ -95,7 +107,9 @@ public abstract class Mobile extends Element implements IMobile {
 			this.setHasMoved();
 		}
 	}
-
+	/**
+	 * @see model.IMobile#moveLeft()
+	 */
 	@Override
 	public void moveLeft() {
 		if (this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.PENETRABLE) {
@@ -129,6 +143,10 @@ public abstract class Mobile extends Element implements IMobile {
 
 	}
 
+	/**
+	 * @see model.IMobile#moveDown()
+	 */
+	
 	@Override
 	public void moveDown() {
 		if (this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.PENETRABLE) {
@@ -159,7 +177,11 @@ public abstract class Mobile extends Element implements IMobile {
 			this.setHasMoved();
 		}
 	}
-
+	
+	/**
+	 * @see model.IMobile#moveRight()
+	 */
+	
 	@Override
 	public void moveRight() {
 		if (this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() == Permeability.PENETRABLE) {
@@ -192,11 +214,18 @@ public abstract class Mobile extends Element implements IMobile {
 		}
 	}
 
+	/**
+	 * @see model.IMobile#doNothing()
+	 */
 	@Override
 	public void doNothing() {
 		this.setHasMoved();
 	}
 
+	/**
+	 * @param y
+	 * 		Set the position Y of lorann
+	 */
 	protected void setY(int y) {
 		this.getPosition().y = y;
 		if (this.isCrashed()) {
@@ -204,6 +233,10 @@ public abstract class Mobile extends Element implements IMobile {
 		}
 	}
 
+	/**
+	 * @param x
+	 * 		Set the position X of lorann
+	 */
 	protected void setX(int x) {
 		this.getPosition().x = x;
 		if (this.isCrashed()) {
@@ -211,19 +244,38 @@ public abstract class Mobile extends Element implements IMobile {
 		}
 	}
 
+	/** 
+	 * @see model.IMobile#getY()
+	 * 		Gets the position Y of lorann
+	 */
 	public final int getY() {
 
 		return this.getPosition().y;
 	}
 
+	/** 
+	 * @see model.IMobile#getX()
+	 * 		Gets the position X of lorann
+	 */
 	public final int getX() {
 		return this.getPosition().x;
 	}
 
+	/**
+	 * 
+	 */
 	protected void setHasMoved() {
 		this.getMap().setMobileHasChanged();
 	}
 
+	/**
+	 * @param x
+	 * 		Set the position X of the CrystalBall
+	 * @param y
+	 * 		Set the position Y of the CrystalBall
+	 * @throws IOException
+	 * 
+	 */
 	protected void setHasFoundTheCrystal(int x, int y) throws IOException {
 		this.getMap().getOnTheMapXY(x, y).setSprite(new Sprite(' ', "ground.png"));
 		this.getMap().getOnTheMapXY(x, y).getSprite().loadImage();
@@ -238,6 +290,13 @@ public abstract class Mobile extends Element implements IMobile {
 		}
 	}
 
+	/**
+	 * @param x
+	 * 		Set the position X of the Purse
+	 * @param y
+	 * 		Set the position Y of the Purse
+	 * @throws IOException
+	 */
 	protected void setHasFoundThePurse(int x, int y) throws IOException {
 		this.getMap().dieOntheMapXY(x, y);
 		this.getMap().setOnTheMapXY(new Ground(), x, y);
@@ -245,23 +304,42 @@ public abstract class Mobile extends Element implements IMobile {
 		this.getMap().getOnTheMapXY(x, y).getSprite().loadImage();
 	}
 
+	/**
+	 * Gets the map
+	 * 
+	 * @return the map
+	 */
 	public IMap getMap() {
 		return map;
 	}
 
+	/**
+	 * Set the map
+	 * 
+	 * @param map
+	 */
 	public void setMap(IMap map) {
 		this.map = map;
 	}
 
+	/**
+	 * @see model.IMobile#isAlive()
+	 */
 	public Boolean isAlive() {
 		return alive;
 	}
 
+	/**
+	 * Change the state of life.
+	 */
 	public void die() {
 		this.alive = false;
 		this.setHasMoved();
 	}
 
+	/**
+	 * @see model.IMobile#isCrashed()
+	 */
 	public Boolean isCrashed() {
 		return false;
 		// TODO Auto-generated method stub
@@ -269,6 +347,9 @@ public abstract class Mobile extends Element implements IMobile {
 		// this.getY()).getPermeability() == Permeability.BLOCKING;
 	}
 
+	/**
+	 * @see showboard.IPawn#getPosition()
+	 */
 	public Point getPosition() {
 		return this.position;
 	}
@@ -292,10 +373,20 @@ public abstract class Mobile extends Element implements IMobile {
 		return this.board;
 	}
 
+	/**
+	 * Gets the victory.
+	 * 
+	 * @return the victory
+	 */
 	public Boolean getVictory() {
 		return victory;
 	}
 
+	/**
+	 * Set the victory.
+	 * 
+	 * @param victory
+	 */
 	public void setVictory(Boolean victory) {
 		this.victory = victory;
 	}
