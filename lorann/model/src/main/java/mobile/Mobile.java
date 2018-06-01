@@ -35,7 +35,9 @@ public abstract class Mobile extends Element implements IMobile {
 	private IBoard board;
 	
 	/** The victory */
-	private Boolean victory = false;
+	private String victory = "GAME OVER";
+	
+	private int score;
 
 	/**
 	 * Instantiates a new mobile.
@@ -94,7 +96,7 @@ public abstract class Mobile extends Element implements IMobile {
 			this.setHasMoved();
 		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.END) {
 			this.setY(this.getY() - 1);
-			this.setVictory(true);
+			this.setVictory("VICTORY");
 			this.die();
 		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.PURSE) {
 			try {
@@ -129,7 +131,7 @@ public abstract class Mobile extends Element implements IMobile {
 			this.setHasMoved();
 		} else if (this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.END) {
 			this.setX(this.getX() - 1);
-			this.setVictory(true);
+			this.setVictory("VICTORY");
 			this.die();
 		} else if (this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.PURSE) {
 			try {
@@ -165,7 +167,7 @@ public abstract class Mobile extends Element implements IMobile {
 			this.setHasMoved();
 		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.END) {
 			this.setY(this.getY() + 1);
-			this.setVictory(true);
+			this.setVictory("VICTORY");
 			this.die();
 		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY()+1).getPermeability() == Permeability.PURSE) {
 			try {
@@ -202,7 +204,7 @@ public abstract class Mobile extends Element implements IMobile {
 
 		} else if (this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() == Permeability.END) {
 			this.setX(this.getX() + 1);
-			this.setVictory(true);
+			this.setVictory("VICTORY");
 			this.die();
 		} else if (this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() == Permeability.PURSE) {
 			try {
@@ -302,8 +304,8 @@ public abstract class Mobile extends Element implements IMobile {
 	protected void setHasFoundThePurse(int x, int y) throws IOException {
 		this.getMap().dieOntheMapXY(x, y);
 		this.getMap().setOnTheMapXY(new Ground(), x, y);
-		System.out.println(this.getMap().getOnTheMapXY(x, y).getSprite().getImageName()+" "+x+" "+y);
 		this.getMap().getOnTheMapXY(x, y).getSprite().loadImage();
+		this.score+=100;
 	}
 
 	/**
@@ -382,8 +384,8 @@ public abstract class Mobile extends Element implements IMobile {
 	 * 
 	 * @return the victory
 	 */
-	public Boolean getVictory() {
-		return victory;
+	public String getVictory() {
+		return victory+" - Score : "+score;
 	}
 
 	/**
@@ -391,7 +393,7 @@ public abstract class Mobile extends Element implements IMobile {
 	 * 
 	 * @param victory
 	 */
-	public void setVictory(Boolean victory) {
+	public void setVictory(String victory) {
 		this.victory = victory;
 	}
 

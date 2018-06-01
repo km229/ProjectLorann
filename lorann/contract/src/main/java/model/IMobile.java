@@ -67,7 +67,7 @@ public interface IMobile extends IPawn, IElement {
      *
      * @return the boolean
      */
-    Boolean victory();
+    String victory();
 
 	/**
 	 * @throws IOException

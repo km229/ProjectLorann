@@ -119,7 +119,7 @@ public class Lorann extends Mobile {
 	 * @see model.IMobile#victory()
 	 */
 	@Override
-	public Boolean victory() {
+	public String victory() {
 		return super.getVictory();
 	}
 

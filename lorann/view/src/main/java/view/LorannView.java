@@ -15,6 +15,7 @@ import controller.IOrderPerformer;
 import controller.UserOrder;
 import model.IMap;
 import model.IMobile;
+import model.LorannModel;
 import showboard.BoardFrame;
 
 /**
@@ -39,6 +40,14 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 
 	/** The order performer. */
 	private IOrderPerformer orderPerformer;
+	
+	private IMobile monster1;
+	
+	private IMobile monster2;
+	
+	private IMobile monster3;
+	
+	private IMobile monster4;
 
 	/**
 	 * Instantiates a new insane vehicles View.
@@ -47,13 +56,18 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 	 *            the map
 	 * @param Lorann
 	 *            the Lorann
+	 * @param model 
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public LorannView(final IMap map, final IMobile Lorann) throws IOException {
+	public LorannView(final IMap map, final IMobile Lorann, LorannModel model) throws IOException {
 		this.setMap(map);
 		this.setLorann(Lorann);
 		this.getLorann().getSprite().loadImage();
+		this.monster1 = model.getMonster(1);
+		this.monster2 = model.getMonster(2);
+		this.monster3 = model.getMonster(3);
+		this.monster4 = model.getMonster(4);
 		this.setCloseView(new Rectangle(0, 0, this.getMap().getWidth(), this.getMap().getHeight()));
 		SwingUtilities.invokeLater(this);
 	}
@@ -83,6 +97,11 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		}
 		
 		boardFrame.addPawn(this.getLorann());
+		for(int i=1; i<5; i++){
+			if(this.getMonster(i) != null){
+				boardFrame.addPawn(this.getMonster(i));
+			}
+		}
 
 		this.getMap().getObservable().addObserver(boardFrame.getObserver());
 
@@ -253,5 +272,37 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 	 */
 	public void setCloseView(Rectangle closeView) {
 		this.closeView = closeView;
+	}
+	
+	public IMobile getMonster(int monster) {
+		switch (monster) {
+		case 1:
+			return monster1;
+		case 2:
+			return monster2;
+		case 3:
+			return monster3;
+		case 4:
+			return monster4;
+		default:
+			return null;
+		}
+	}
+
+	public void setMonster(int monster, IMobile Monster) {
+		switch (monster) {
+		case 1:
+			this.monster1 = Monster;
+			break;
+		case 2:
+			this.monster2 = Monster;
+			break;
+		case 3:
+			this.monster3 = Monster;
+			break;
+		case 4:
+			this.monster4 = Monster;
+			break;
+		}
 	}
 }

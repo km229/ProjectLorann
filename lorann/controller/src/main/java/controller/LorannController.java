@@ -79,10 +79,10 @@ public class LorannController implements ILorannController, IOrderPerformer {
 			this.clearStackOrder();
 		}
 
-		if (this.getModel().getLorann().victory()) {
-			this.getView().displayMessage("VICTORY");
+		if (this.getModel().getLorann().victory() == "VICTORY") {
+			this.getView().displayMessage(this.getModel().getLorann().victory());
 		} else {
-			this.getView().displayMessage("GAME OVER");
+			this.getView().displayMessage(this.getModel().getLorann().victory());
 		}
 	}
 

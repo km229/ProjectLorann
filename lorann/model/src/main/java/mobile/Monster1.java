@@ -8,11 +8,10 @@ import model.Sprite;
 
 public class Monster1 extends Mobile {
 	
-	private static Sprite monster1;
+	private static Sprite monster1 = new Sprite('1', "monster_1.png");
 
-	public Monster1(int x, int y, Sprite sprite, IMap map, Permeability permeability) throws IOException {
-		super(x, y, sprite, map, permeability);
-		Monster1.setMonster1(sprite);
+	public Monster1(int x, int y,  IMap map, Permeability permeability) throws IOException {
+		super(x, y, monster1, map, permeability);
 		monster1.loadImage();
 	}
 
@@ -22,6 +21,17 @@ public class Monster1 extends Mobile {
 
 	public static void setMonster1(Sprite monster1) {
 		Monster1.monster1 = monster1;
+	}
+
+	@Override
+	public String victory() {
+		return null;
+	}
+
+	@Override
+	public void magic() throws IOException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
