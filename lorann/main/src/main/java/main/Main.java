@@ -32,6 +32,12 @@ public abstract class Main {
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
+	/**
+	 * @param args
+	 * @throws IOException
+	 * @throws SQLException
+	 * @throws InterruptedException
+	 */
 	public static void main(final String[] args) throws IOException, SQLException, InterruptedException {
 
 		System.out.println("Enter level (1-5) : ");
@@ -68,6 +74,10 @@ public abstract class Main {
 
 	}
 
+	/**
+	 * @param level
+	 *            The level
+	 */
 	private static void setSpawnXY(int level) {
 		switch (level) {
 		case 1:
@@ -94,6 +104,12 @@ public abstract class Main {
 
 	}
 
+	/**
+	 * 
+	 * @param string
+	 * @return return the wholeNumber
+	 */
+
 	public static boolean WholeNumber(String string) {
 		try {
 			Integer.parseInt(string);
@@ -104,6 +120,11 @@ public abstract class Main {
 		return false;
 	}
 
+	/**
+	 * @throws IOException
+	 * @throws SQLException
+	 * @throws InterruptedException
+	 */
 	public static void Error() throws IOException, SQLException, InterruptedException {
 
 		System.out.println("Invalid number.");
@@ -111,6 +132,13 @@ public abstract class Main {
 
 	}
 
+	/**
+	 * @param level
+	 * 		Start the chosen level
+	 * @throws IOException
+	 * @throws SQLException
+	 * @throws InterruptedException
+	 */
 	public static void Start(int level) throws IOException, SQLException, InterruptedException {
 		System.out.println("Game start!");
 		final LorannModel model = new LorannModel(level, startX, startY);
@@ -119,5 +147,4 @@ public abstract class Main {
 		view.setOrderPerformer(controller.getOrderPeformer());
 		controller.play();
 	}
-
 }

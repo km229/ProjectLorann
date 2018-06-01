@@ -33,8 +33,18 @@ public class Lorann extends Mobile {
 	/** The Constant spriteTurnDown. */
 	private static final Sprite spriteTurnDown = new Sprite('c', "lorann_b.png");
 
+	/** The icon. */
 	private int icon = 0;
 
+	/**
+	 * @param x
+	 * 		The position X of Lorann
+	 * @param y
+	 * 		The position Y of Lorann
+	 * @param map
+	 * 		The map
+	 * @throws IOException
+	 */
 	public Lorann(final int x, final int y, IMap map) throws IOException {
 		super(x, y, spriteUL, map, Permeability.BLOCKING);
 		spriteUL.loadImage();
@@ -47,30 +57,45 @@ public class Lorann extends Mobile {
 		spriteTurnUp.loadImage();
 	}
 
+	/* (non-Javadoc)
+	 * @see mobile.Mobile#moveUp()
+	 */
 	@Override
 	public void moveUp() {
 		super.moveUp();
 		this.setSprite(spriteTurnUp);
 	}
 
+	/* (non-Javadoc)
+	 * @see mobile.Mobile#moveLeft()
+	 */
 	@Override
 	public void moveLeft() {
 		super.moveLeft();
 		this.setSprite(spriteTurnLeft);
 	}
 
+	/* (non-Javadoc)
+	 * @see mobile.Mobile#moveDown()
+	 */
 	@Override
 	public void moveDown() {
 		super.moveDown();
 		this.setSprite(spriteTurnDown);
 	}
 
+	/* (non-Javadoc)
+	 * @see mobile.Mobile#moveRight()
+	 */
 	@Override
 	public void moveRight() {
 		super.moveRight();
 		this.setSprite(spriteTurnRight);
 	}
 
+	/* (non-Javadoc)
+	 * @see mobile.Mobile#doNothing()
+	 */
 	@Override
 	public void doNothing() {
 		switch (this.icon) {
@@ -90,11 +115,17 @@ public class Lorann extends Mobile {
 		this.icon=(this.icon+1)%4;
 	}
 
+	/* (non-Javadoc)
+	 * @see model.IMobile#victory()
+	 */
 	@Override
 	public Boolean victory() {
 		return super.getVictory();
 	}
 
+	/* (non-Javadoc)
+	 * @see model.IMobile#magic()
+	 */
 	@Override
 	public void magic() throws IOException {
 		// TODO Auto-generated method stub

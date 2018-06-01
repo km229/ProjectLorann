@@ -40,6 +40,9 @@ public class LorannController implements ILorannController, IOrderPerformer {
 		this.clearStackOrder();
 	}
 
+	/* (non-Javadoc)
+	 * @see controller.ILorannController#play()
+	 */
 	@Override
 	public final void play() throws InterruptedException, IOException {
 		while (this.getModel().getLorann().isAlive()) {
@@ -86,11 +89,20 @@ public class LorannController implements ILorannController, IOrderPerformer {
 		return this.view;
 	}
 
+	/* (non-Javadoc)
+	 * @see controller.IOrderPerformer#orderPerform(controller.UserOrder)
+	 */
 	@Override
 	public final void orderPerform(final UserOrder userOrder) throws IOException {
 		this.setStackOrder(userOrder);
 	}
 
+	/**
+	 * Sets the view.
+	 * 
+	 * @param view
+	 * 		The view.
+	 */
 	private void setView(final ILorannView view) {
 		this.view = view;
 	}
@@ -104,6 +116,12 @@ public class LorannController implements ILorannController, IOrderPerformer {
 		return this.model;
 	}
 
+	/**
+	 * Sets the model.
+	 * 
+	 * @param model
+	 * 		The model.
+	 */
 	private void setModel(final IModel model) {
 		this.model = model;
 	}
@@ -134,6 +152,9 @@ public class LorannController implements ILorannController, IOrderPerformer {
 		this.stackOrder = UserOrder.NOP;
 	}
 
+	/* (non-Javadoc)
+	 * @see controller.ILorannController#getOrderPeformer()
+	 */
 	@Override
 	public IOrderPerformer getOrderPeformer() {
 		return this;
