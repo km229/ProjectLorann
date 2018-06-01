@@ -233,9 +233,6 @@ public abstract class Mobile extends Element implements IMobile {
 	 */
 	protected void setY(int y) {
 		this.getPosition().y = y;
-		if (this.isCrashed()) {
-			this.die();
-		}
 	}
 
 	/**
@@ -244,9 +241,6 @@ public abstract class Mobile extends Element implements IMobile {
 	 */
 	protected void setX(int x) {
 		this.getPosition().x = x;
-		if (this.isCrashed()) {
-			this.die();
-		}
 	}
 
 
@@ -283,6 +277,7 @@ public abstract class Mobile extends Element implements IMobile {
 	protected void setHasFoundTheCrystal(int x, int y) throws IOException {
 		this.getMap().getOnTheMapXY(x, y).setSprite(new Sprite(' ', "ground.png"));
 		this.getMap().getOnTheMapXY(x, y).getSprite().loadImage();
+		this.score+=500;
 		for (int i = 0; i < this.getMap().getWidth(); i++) {
 			for (int j = 0; j < this.getMap().getHeight(); j++) {
 				if (this.getMap().getOnTheMapXY(i, j).getSprite().getConsoleImage() == 'g') {
@@ -346,8 +341,9 @@ public abstract class Mobile extends Element implements IMobile {
 	/* (non-Javadoc)
 	 * @see model.IMobile#isCrashed()
 	 */
-	public Boolean isCrashed() {
-		return false;
+	public void isCrashed() {
+		this.alive = false;
+		this.setHasMoved();
 		// TODO Auto-generated method stub
 		// return this.getMap().getOnTheMapXY(this.getX(),
 		// this.getY()).getPermeability() == Permeability.BLOCKING;

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import java.util.List;
+import java.util.Random;
 
 import model.IModel;
 import view.ILorannView;
@@ -28,7 +29,7 @@ public class LorannController implements ILorannController, IOrderPerformer {
 
 	/** The model. */
 	private IModel model;
-	
+
 	/** The stackOrder. */
 	private UserOrder stackOrder;
 
@@ -46,37 +47,109 @@ public class LorannController implements ILorannController, IOrderPerformer {
 		this.clearStackOrder();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see controller.ILorannController#play()
 	 */
 	@Override
-	public final void play() throws InterruptedException, IOException {
+	public final void play(int level) throws InterruptedException, IOException {
+		int x, y, z = 1;
+		switch (level) {
+		case 1:
+			y = 2;
+			break;
+		case 2:
+			y = 4;
+			break;
+		case 3:
+			y = 2;
+			break;
+		case 4:
+			y = 3;
+			break;
+		case 5:
+			y = 4;
+			break;
+		default:
+			y = 0;
+			break;
+		}
+		Random value = new Random();
 		while (this.getModel().getLorann().isAlive()) {
 			Thread.sleep(speed);
 			switch (this.getStackOrder()) {
 			case RIGHT:
 				this.getModel().getLorann().moveRight();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveRight();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveLeft();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveUp();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveDown();
 				break;
 			case LEFT:
 				this.getModel().getLorann().moveLeft();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveRight();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveLeft();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveUp();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveDown();
 				break;
 			case UP:
 				this.getModel().getLorann().moveUp();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveRight();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveLeft();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveUp();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveDown();
 				break;
 			case DOWN:
 				this.getModel().getLorann().moveDown();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveRight();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveLeft();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveUp();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveDown();
 				break;
-			
-			case SPACE: this.getModel().getLorann().magic(); // "Magic" need
+
+			case SPACE:
+				this.getModel().getLorann().magic(); // "Magic" need
 				break;
-			 
+
 			case NOP:
 			default:
 				this.getModel().getLorann().doNothing();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveRight();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveLeft();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveUp();
+				x = value.nextInt(y) + 1;
+				this.getModel().getMonster(x).moveDown();
 				break;
 
 			}
 			this.clearStackOrder();
+			for (z = 1; z <= y; z++) {
+				if (this.getModel().getLorann().getX() == this.getModel().getMonster(z).getX()
+						&& this.getModel().getLorann().getY() == this.getModel().getMonster(z).getY()) {
+					this.getModel().getLorann().isCrashed();
+
+				}
+			}
 		}
 
 		if (this.getModel().getLorann().victory() == "VICTORY") {
@@ -95,7 +168,9 @@ public class LorannController implements ILorannController, IOrderPerformer {
 		return this.view;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see controller.IOrderPerformer#orderPerform(controller.UserOrder)
 	 */
 	@Override
@@ -107,7 +182,7 @@ public class LorannController implements ILorannController, IOrderPerformer {
 	 * Sets the view.
 	 * 
 	 * @param view
-	 * 		The view.
+	 *            The view.
 	 */
 	private void setView(final ILorannView view) {
 		this.view = view;
@@ -126,7 +201,7 @@ public class LorannController implements ILorannController, IOrderPerformer {
 	 * Sets the model.
 	 * 
 	 * @param model
-	 * 		The model.
+	 *            The model.
 	 */
 	private void setModel(final IModel model) {
 		this.model = model;
@@ -158,7 +233,9 @@ public class LorannController implements ILorannController, IOrderPerformer {
 		this.stackOrder = UserOrder.NOP;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see controller.ILorannController#getOrderPeformer()
 	 */
 	@Override

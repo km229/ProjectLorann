@@ -115,6 +115,7 @@ public class LorannModel implements IModel {
 		switch (level) {
 		case 1:
 			this.monster1 = new Monster1(7, 5, map, Permeability.MONSTER);
+			this.monster2 = new Monster2(5, 4, map, Permeability.MONSTER);
 			break;
 		case 2:
 			this.monster1 = new Monster1(10, 4, map, Permeability.MONSTER);
@@ -123,16 +124,19 @@ public class LorannModel implements IModel {
 			this.monster4 = new Monster4(10, 10, map, Permeability.MONSTER);
 			break;
 		case 3:
-			this.monster4 = new Monster4(7, 6, map, Permeability.MONSTER);
+			this.monster1 = new Monster1(7, 6, map, Permeability.MONSTER);
+			this.monster2 = new Monster2(7, 5, map, Permeability.MONSTER);
 			break;
 		case 4:
-			this.monster2 = new Monster2(13, 1, map, Permeability.MONSTER);
-			this.monster3 = new Monster3(12, 10, map, Permeability.MONSTER);
+			this.monster1 = new Monster1(16, 1, map, Permeability.MONSTER);
+			this.monster2 = new Monster2(12, 10, map, Permeability.MONSTER);
+			this.monster3 = new Monster3(1, 3, map, Permeability.MONSTER);
 			break;
 		case 5:
-			this.monster1 = new Monster1(4, 8, map, Permeability.MONSTER);
+			this.monster1 = new Monster1(8, 4, map, Permeability.MONSTER);
 			this.monster2 = new Monster2(4, 6, map, Permeability.MONSTER);
 			this.monster3 = new Monster3(4, 4, map, Permeability.MONSTER);
+			this.monster4 = new Monster4(10, 8, map, Permeability.MONSTER);
 			break;
 		default:
 			break;

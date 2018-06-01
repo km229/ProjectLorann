@@ -60,7 +60,7 @@ public interface IMobile extends IPawn, IElement {
      *
      * @return the boolean
      */
-    Boolean isCrashed();
+    void isCrashed();
     
     /**
      * Checks if the lorann has found the CrystalBall.

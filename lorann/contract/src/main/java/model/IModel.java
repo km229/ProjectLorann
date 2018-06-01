@@ -24,5 +24,7 @@ public interface IModel {
     void getLevelById(int id) throws SQLException;
 
 	IMobile getLorann();
+	
+	IMobile getMonster(int monster);
 
 }

@@ -145,6 +145,7 @@ public abstract class Main {
 		final LorannView view = new LorannView(model.getMap(), model.getLorann(), model);
 		final LorannController controller = new LorannController(view, model);
 		view.setOrderPerformer(controller.getOrderPeformer());
-		controller.play();
+		controller.play(level);
+		System.exit(0);
 	}
 }
