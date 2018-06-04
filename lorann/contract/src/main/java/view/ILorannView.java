@@ -2,6 +2,8 @@ package view;
 
 import java.awt.event.KeyEvent;
 
+import showboard.BoardFrame;
+
 /**
  * <h1>Interface ILorannView.</h1>
  *
@@ -34,4 +36,7 @@ public interface ILorannView {
      *            the message
      */
 	void keyTyped(KeyEvent keyEvent);
+
+
+	BoardFrame getBoardFrame();
 }

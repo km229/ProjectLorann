@@ -81,33 +81,10 @@ public abstract class Mobile extends Element implements IMobile {
 	 */
 	@Override
 	public void moveUp() {
-		if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.PENETRABLE) {
+
 			this.setY(this.getY() - 1);
 			this.setHasMoved();
-		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1)
-				.getPermeability() == Permeability.CRYSTALBALL) {
-			try {
-				this.setHasFoundTheCrystal(this.getX(), this.getY() - 1);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			this.setY(this.getY() - 1);
-			this.setHasMoved();
-		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.END) {
-			this.setY(this.getY() - 1);
-			this.setVictory("VICTORY");
-			this.die();
-		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.PURSE) {
-			try {
-				this.setHasFoundThePurse(this.getX(), this.getY()-1);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			this.setY(this.getY() - 1);
-			this.setHasMoved();
-		}
+
 	}
 	
 	/* (non-Javadoc)
@@ -115,35 +92,8 @@ public abstract class Mobile extends Element implements IMobile {
 	 */
 	@Override
 	public void moveLeft() {
-		if (this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.PENETRABLE) {
 			this.setX(this.getX() - 1);
 			this.setHasMoved();
-		} else if (this.getMap().getOnTheMapXY(this.getX() - 1, this.getY())
-				.getPermeability() == Permeability.CRYSTALBALL) {
-			try {
-				this.setHasFoundTheCrystal(this.getX() - 1, this.getY());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-
-			}
-			this.setX(this.getX() - 1);
-			this.setHasMoved();
-		} else if (this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.END) {
-			this.setX(this.getX() - 1);
-			this.setVictory("VICTORY");
-			this.die();
-		} else if (this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.PURSE) {
-			try {
-				this.setHasFoundThePurse(this.getX()-1, this.getY());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			this.setX(this.getX() - 1);
-			this.setHasMoved();
-		}
-
 	}
 
 	
@@ -152,33 +102,8 @@ public abstract class Mobile extends Element implements IMobile {
 	 */
 	@Override
 	public void moveDown() {
-		if (this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.PENETRABLE) {
 			this.setY(this.getY() + 1);
 			this.setHasMoved();
-		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1)
-				.getPermeability() == Permeability.CRYSTALBALL) {
-			try {
-				this.setHasFoundTheCrystal(this.getX(), this.getY() + 1);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			this.setY(this.getY() + 1);
-			this.setHasMoved();
-		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.END) {
-			this.setY(this.getY() + 1);
-			this.setVictory("VICTORY");
-			this.die();
-		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY()+1).getPermeability() == Permeability.PURSE) {
-			try {
-				this.setHasFoundThePurse(this.getX(), this.getY()+1);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			this.setY(this.getY() + 1);
-			this.setHasMoved();
-		}
 	}
 	
 	
@@ -188,34 +113,8 @@ public abstract class Mobile extends Element implements IMobile {
 	 */
 	@Override
 	public void moveRight() {
-		if (this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() == Permeability.PENETRABLE) {
-			this.setX(this.getX() + 1);
+		this.setX(this.getX() + 1);
 			this.setHasMoved();
-		} else if (this.getMap().getOnTheMapXY(this.getX() + 1, this.getY())
-				.getPermeability() == Permeability.CRYSTALBALL) {
-			try {
-				this.setHasFoundTheCrystal(this.getX() + 1, this.getY());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			this.setX(this.getX() + 1);
-			this.setHasMoved();
-
-		} else if (this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() == Permeability.END) {
-			this.setX(this.getX() + 1);
-			this.setVictory("VICTORY");
-			this.die();
-		} else if (this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() == Permeability.PURSE) {
-			try {
-				this.setHasFoundThePurse(this.getX()+1, this.getY());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			this.setX(this.getX() + 1);
-			this.setHasMoved();
-		}
 	}
 
 

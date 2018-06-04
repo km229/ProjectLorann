@@ -5,6 +5,7 @@ import java.io.IOException;
 import model.IMap;
 import model.Permeability;
 import model.Sprite;
+import showboard.BoardFrame;
 
 public class Monster3 extends Mobile {
 	
@@ -62,9 +63,10 @@ public class Monster3 extends Mobile {
 	}
 
 	@Override
-	public void magic() throws IOException {
+	public void magic(BoardFrame bf) throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

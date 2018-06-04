@@ -1,71 +1,35 @@
 package mobile;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.lang.annotation.ElementType;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.lang.model.element.ElementKind;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import model.IMap;
 import model.Permeability;
 import model.Sprite;
+import motionless.Ground;
 import showboard.BoardFrame;
+import view.ILorannView;
 
 public class FireBall extends Mobile {
-
-	private static String Moving;
-
+	
+	private static IMap map;
+	
 	private static Sprite fireball1;
 
-	private static IMap map;
-
-	private boolean etat;
-
-	private static BoardFrame bf;
-
-	private static final int speed = 200;
-
-	private static final Sprite fireball2 = new Sprite(' ', "fireball_2.png");
-
-	private static final Sprite fireball3 = new Sprite(' ', "fireball_3.png");
-
-	private static final Sprite fireball4 = new Sprite(' ', "fireball_4.png");
-
-	public FireBall(int x, int y, Sprite sprite, IMap map, Permeability permeability, BoardFrame bf, String Moving)
-			throws IOException, InterruptedException {
+	
+	public FireBall(int x, int y, Sprite sprite, IMap map, Permeability permeability) throws IOException, InterruptedException {
 		super(x, y, sprite, map, permeability);
-		setMoving(Moving);
 		setMap(map);
-		setBf(bf);
 		FireBall.setFireball(sprite);
-		fireball1.loadImage();
-		fireball2.loadImage();
-		fireball3.loadImage();
-		fireball4.loadImage();
-		etat = true;
-		bf.addPawn(this);
-
-		timer.scheduleAtFixedRate(task, 1, speed);
-
-	}
-
-	Timer timer = new Timer();
-	TimerTask task = new TimerTask() {
-
-		@Override
-		public void run() {
-			if (etat) {
-				play();
-			}
-
-		}
-
-	};
-
-	public BoardFrame getBf() {
-		return bf;
-	}
-
-	public void setBf(BoardFrame bf) {
-		FireBall.bf = bf;
 	}
 
 	public IMap getMap() {
@@ -74,14 +38,6 @@ public class FireBall extends Mobile {
 
 	public void setMap(IMap map) {
 		FireBall.map = map;
-	}
-
-	public static String getMoving() {
-		return Moving;
-	}
-
-	public static void setMoving(String moving) {
-		Moving = moving;
 	}
 
 	public static Sprite getFireball() {
@@ -99,19 +55,17 @@ public class FireBall extends Mobile {
 	}
 
 	@Override
-	public void magic() {
+	public void magic(BoardFrame bf) {
 		// TODO Auto-generated method stub
-
+		
 	}
-
+	
 	@Override
 	public void moveUp() {
 		super.moveUp();
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
+	
+	/* (non-Javadoc)
 	 * @see mobile.Mobile#moveLeft()
 	 */
 	@Override
@@ -119,9 +73,7 @@ public class FireBall extends Mobile {
 		super.moveLeft();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see mobile.Mobile#moveDown()
 	 */
 	@Override
@@ -129,72 +81,12 @@ public class FireBall extends Mobile {
 		super.moveDown();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see mobile.Mobile#moveRight()
 	 */
 	@Override
 	public void moveRight() {
 		super.moveRight();
 	}
-
-	public void play() {
-
-		spriteChange(this.getSprite());
-
-		if (Moving == "UP") {
-			moveUp();
-			if (map.getOnTheMapXY(this.getX(), this.getY()).getPermeability() == Permeability.BLOCKING) {
-				this.setSprite(new Sprite('_', "ground.png"));
-				etat = false;
-			}
-
-		}
-
-		if (Moving == "DOWN") {
-			moveDown();
-			if (map.getOnTheMapXY(this.getX(), this.getY()).getPermeability() == Permeability.BLOCKING) {
-				this.setSprite(new Sprite('_', "ground.png"));
-				etat = false;
-			}
-		}
-
-		if (Moving == "RIGHT") {
-			moveRight();
-			if (map.getOnTheMapXY(this.getX(), this.getY()).getPermeability() == Permeability.BLOCKING) {
-				this.die();
-				etat = false;
-			}
-		}
-
-		if (Moving == "LEFT") {
-			moveLeft();
-			if (map.getOnTheMapXY(this.getX(), this.getY()).getPermeability() == Permeability.BLOCKING) {
-				this.die();
-				etat = false;
-			}
-		}
-	}
-
-	private void spriteChange(Sprite sprite) {
-
-		if (sprite == fireball1) {
-			this.setSprite(fireball2);
-		}
-
-		if (sprite == fireball2) {
-			this.setSprite(fireball3);
-		}
-
-		if (sprite == fireball3) {
-			this.setSprite(fireball4);
-		}
-
-		if (sprite == fireball4) {
-			this.setSprite(fireball1);
-		}
-
-	}
-
+	
 }

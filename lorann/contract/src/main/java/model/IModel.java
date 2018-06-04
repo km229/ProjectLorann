@@ -30,6 +30,7 @@ public interface IModel {
      */
 	IMobile getLorann();
 	
+	
     /**
      * Gets the monster wanted.
      *

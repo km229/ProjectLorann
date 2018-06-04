@@ -29,6 +29,7 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 	/** The Constant squareSize. */
 	private int squareSize = 80;
 	
+	private BoardFrame boardFrame;
 	/** The closeView.  */
 	private Rectangle closeView;
 
@@ -70,6 +71,7 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		this.monster4 = model.getMonster(4);
 		this.setCloseView(new Rectangle(0, 0, this.getMap().getWidth(), this.getMap().getHeight()));
 		SwingUtilities.invokeLater(this);
+		
 	}
 
 	/*
@@ -78,7 +80,8 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 	 * @see java.lang.Runnable#run()
 	 */
 	public final void run() {
-		final BoardFrame boardFrame = new BoardFrame("Lorann");
+		BoardFrame boardFrame = new BoardFrame("Lorran");
+		setBoardFrame(boardFrame);
 		boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeight()));
 		boardFrame.setSize(this.map.getWidth() * squareSize, this.map.getHeight() * squareSize);
 		boardFrame.setDisplayFrame(this.closeView);
@@ -106,6 +109,14 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		this.getMap().getObservable().addObserver(boardFrame.getObserver());
 
 		boardFrame.setVisible(true);
+	}
+	
+	public BoardFrame getBoardFrame() {
+		return boardFrame;
+	}
+
+	public void setBoardFrame(BoardFrame boardFrame) {
+		this.boardFrame = boardFrame;
 	}
 
 

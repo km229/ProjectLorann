@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import controller.LorannController;
 import model.LorannModel;
+import showboard.BoardFrame;
 import view.LorannView;
 
 /**
@@ -17,6 +18,7 @@ import view.LorannView;
  */
 public abstract class Main {
 
+	
 	/** The Constant startX. */
 	private static int startX = 0;
 

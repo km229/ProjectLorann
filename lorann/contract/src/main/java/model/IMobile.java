@@ -1,6 +1,8 @@
 package model;
 
 import java.io.IOException;
+
+import showboard.BoardFrame;
 import showboard.IPawn;
 
 /**
@@ -79,7 +81,8 @@ public interface IMobile extends IPawn, IElement {
 	 * Checks the power of Lorann.
 	 * 
 	 * @throws IOException
+	 * @throws InterruptedException 
 	 */
-	void magic() throws IOException;
+	void magic(BoardFrame bf) throws IOException, InterruptedException;
 
 }

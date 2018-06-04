@@ -125,7 +125,7 @@ public class LorannController implements ILorannController, IOrderPerformer {
 				break;
 
 			case SPACE:
-				this.getModel().getLorann().magic(); // "Magic" need
+				this.getModel().getLorann().magic(this.getView().getBoardFrame()); // "Magic" need
 				break;
 
 			case NOP:

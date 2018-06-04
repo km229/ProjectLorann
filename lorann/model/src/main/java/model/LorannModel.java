@@ -1,9 +1,12 @@
 package model;
 
 import java.awt.Point;
-
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import mobile.FireBall;
@@ -39,6 +42,16 @@ public class LorannModel implements IModel {
 	private IMobile monster3;
 
 	private IMobile monster4;
+	
+	private int monster1X;
+	private int monster2X;
+	private int monster3X;
+	private int monster4X;
+	private int monster1Y;
+	private int monster2Y;
+	private int monster3Y;
+	private int monster4Y;
+	private ArrayList<Integer> XYMonsters= new ArrayList<Integer>();
 
 	/**
 	 * @param level
@@ -49,11 +62,13 @@ public class LorannModel implements IModel {
 	 *            The position Y of lorann
 	 * @throws IOException
 	 * @throws SQLException
+	 * @throws InterruptedException 
 	 */
-	public LorannModel(final int level, final int lorannX, final int lorannY) throws IOException, SQLException {
+	public LorannModel(final int level, final int lorannX, final int lorannY) throws IOException, SQLException, InterruptedException {
 		this.setMap(new Map(level));
-		this.setLorann(new Lorann(lorannX, lorannY, this.getMap()));
 		this.setMonsters(level);
+		this.setLorann(new Lorann(lorannX, lorannY, this.getMap()));
+		
 	}
 
 	/**
@@ -61,8 +76,9 @@ public class LorannModel implements IModel {
 	 *            The level
 	 * @throws IOException
 	 * @throws SQLException
+	 * @throws InterruptedException 
 	 */
-	public LorannModel(final int level) throws IOException, SQLException {
+	public LorannModel(final int level) throws IOException, SQLException, InterruptedException {
 		this.setMap(new Map(level));
 		this.setLorann(new Lorann(this.position.x, this.position.y, this.getMap()));
 	}
@@ -114,37 +130,88 @@ public class LorannModel implements IModel {
 	}
 
 	public void setMonsters(final int level) throws IOException {
+		
+			
 		switch (level) {
 		case 1:
 			this.monster1 = new Monster1(7, 5, map, Permeability.MONSTER);
 			this.monster2 = new Monster2(3, 4, map, Permeability.MONSTER);
+			monster1X = monster1.getX();
+			monster1Y = monster1.getY();
+			
+			monster2X = monster2.getX();
+			monster2Y = monster2.getY();
+			
+			XYMonsters.add(monster1X); 
+			XYMonsters.add(monster2X); 
+			XYMonsters.add(monster1Y); 
+			XYMonsters.add(monster2Y); 
 			break;
 		case 2:
 			this.monster1 = new Monster1(10, 4, map, Permeability.MONSTER);
 			this.monster2 = new Monster2(10, 6, map, Permeability.MONSTER);
 			this.monster3 = new Monster3(10, 8, map, Permeability.MONSTER);
 			this.monster4 = new Monster4(10, 10, map, Permeability.MONSTER);
+			monster1X = monster1.getX();
+			monster1Y = monster1.getY();
+			
+			monster2X = monster2.getX();
+			monster2Y = monster2.getY();
+			XYMonsters.add(monster1X); 
+			XYMonsters.add(monster2X); 
+			XYMonsters.add(monster1Y); 
+			XYMonsters.add(monster2Y); 
 			break;
 		case 3:
 			this.monster1 = new Monster1(7, 6, map, Permeability.MONSTER);
 			this.monster2 = new Monster2(7, 5, map, Permeability.MONSTER);
+			monster1X = monster1.getX();
+			monster1Y = monster1.getY();
+			
+			monster2X = monster2.getX();
+			monster2Y = monster2.getY();
+
+			XYMonsters.add(monster1X); 
+			XYMonsters.add(monster2X); 
+			XYMonsters.add(monster1Y); 
+			XYMonsters.add(monster2Y); 
+			
 			break;
 		case 4:
 			this.monster1 = new Monster1(16, 1, map, Permeability.MONSTER);
 			this.monster2 = new Monster2(12, 10, map, Permeability.MONSTER);
 			this.monster3 = new Monster3(1, 3, map, Permeability.MONSTER);
+			monster1X = monster1.getX();
+			monster1Y = monster1.getY();
+			
+			monster2X = monster2.getX();
+			monster2Y = monster2.getY();
+			XYMonsters.add(monster1X); 
+			XYMonsters.add(monster2X); 
+			XYMonsters.add(monster1Y); 
+			XYMonsters.add(monster2Y); 
 			break;
 		case 5:
 			this.monster1 = new Monster1(8, 4, map, Permeability.MONSTER);
 			this.monster2 = new Monster2(4, 6, map, Permeability.MONSTER);
 			this.monster3 = new Monster3(4, 4, map, Permeability.MONSTER);
 			this.monster4 = new Monster4(10, 8, map, Permeability.MONSTER);
+			monster1X = monster1.getX();
+			monster1Y = monster1.getY();
+			
+			monster2X = monster2.getX();
+			monster2Y = monster2.getY();
+			XYMonsters.add(monster1X); 
+			XYMonsters.add(monster2X); 
+			XYMonsters.add(monster1Y); 
+			XYMonsters.add(monster2Y); 
 			break;
 		default:
 			break;
-
+			
 		}
 	}
+	
 
 	public IMobile getMonster(int monster) {
 		switch (monster) {
@@ -177,6 +244,8 @@ public class LorannModel implements IModel {
 			break;
 		}
 	}
+
+
 
 
 }
