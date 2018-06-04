@@ -2,6 +2,7 @@ package mobile;
 
 import java.awt.Point;
 
+
 import java.io.IOException;
 import element.Element;
 import model.IMap;

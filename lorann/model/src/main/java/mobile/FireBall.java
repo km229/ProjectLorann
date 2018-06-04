@@ -3,7 +3,6 @@ package mobile;
 
 import java.io.IOException;
 
-
 import model.IMap;
 import model.Permeability;
 import model.Sprite;
