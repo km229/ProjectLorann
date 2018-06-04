@@ -5,16 +5,28 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import model.IMap;
+import model.IMobile;
 import model.Permeability;
 import model.Sprite;
 import showboard.BoardFrame;
 
+
+/**
+ * <h1>The class Lorann.</h1>
+ *
+ * @author group2
+ * @version 1.0
+ * @see Mobile
+ */
 public class Lorann extends Mobile {
 
+	/** The boardframe bf.*/
 	private BoardFrame bf;
 
+	/** The state Moving. */
 	private String Moving;
 
+	/** The fireball fb. */
 	private FireBall fb;
 
 	/** The Constant SpriteUL */
@@ -41,26 +53,36 @@ public class Lorann extends Mobile {
 	/** The Constant spriteTurnDown. */
 	private static final Sprite spriteTurnDown = new Sprite('c', "lorann_b.png");
 
+	/** The Constant spriteGround. */
 	private static final Sprite spriteGround = new Sprite('c', "ground.png");
 
+	/** The Constant speed of our fireball. */
 	private static final int speed = 100;
 
+	/** The etat. */
 	private boolean etat;
 
+	/** The Constant fireball1. */
 	private static final Sprite fireball1 = new Sprite('c', "fireball_1.png");
 
+	/** The Constant fireball2. */
 	private static final Sprite fireball2 = new Sprite(' ', "fireball_2.png");
 
+	/** The Constant fireball3. */
 	private static final Sprite fireball3 = new Sprite(' ', "fireball_3.png");
 
+	/** The Constant fireball4. */
 	private static final Sprite fireball4 = new Sprite(' ', "fireball_4.png");
 
+	/** The Constant fireball5. */
 	private static final Sprite fireball5 = new Sprite(' ', "fireball_5.png");
 
 	/** The icon. */
 	private int icon = 0;
 
 	/**
+	 * Constructor Lorann
+	 * 
 	 * @param x
 	 *            The position X of Lorann
 	 * @param y
@@ -92,14 +114,6 @@ public class Lorann extends Mobile {
 		spriteTurnDown.loadImage();
 		spriteTurnUp.loadImage();
 		fb = new FireBall(20, 20, fireball1, this.getMap(), this.getPermeability());
-	}
-
-	public BoardFrame getBf() {
-		return bf;
-	}
-
-	public void setBf(BoardFrame bf) {
-		this.bf = bf;
 	}
 
 	/*
@@ -328,6 +342,11 @@ public class Lorann extends Mobile {
 		}
 	};
 
+	/** Method to change the color of our fireball. 
+	 *  
+	 *  @param sprite
+	 *  
+	 * */
 	private void spriteChange(Sprite sprite) {
 		if (sprite == fireball1) {
 			fb.setSprite(fireball2);
@@ -354,6 +373,8 @@ public class Lorann extends Mobile {
 		}
 	}
 
+	/** Method to lauch our fireball in the right direction. */
+	
 	public void play() {
 		spriteChange(fb.getSprite());
 
@@ -380,25 +401,52 @@ public class Lorann extends Mobile {
 
 	}
 
+	/** Method to stop the fireball before a wall. */
 	public void endFireBall() {
 		if (this.getMap().getOnTheMapXY(fb.getX(), fb.getY()).getPermeability() == Permeability.BLOCKING) {
 			etat = false;
 			fb.setSprite(spriteGround);
 		}
 	}
-	
-	public FireBall getFb() {
-		return fb;
-	}
 
-	public void setFb(FireBall fb) {
-		this.fb = fb;
-	}
-
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see model.IMobile#monsterDestroyed()
+	 */
 	@Override
 	public void monsterDestroyed() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	/**
+	 * Return our boardframe.
+	 * 
+	 * @return bf
+	 */
+	public BoardFrame getBf() {
+		return bf;
+	}
+
+	/**
+	 * Set our boardFrame.
+	 * 
+	 * @param bf
+	 */
+	public void setBf(BoardFrame bf) {
+		this.bf = bf;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see model.IMobile#geetFb()
+	 */
+	@Override
+	public IMobile getFb() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
