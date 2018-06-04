@@ -184,11 +184,11 @@ public class LorannControllerTest {
 			case 2:
 				LorannX = 5;
 				assertNotEquals(LorannX, MonsterX);
-				assertEquals(LorannY, MonsterY);
+			
 				LorannX = 4;
 			case 3:
 				LorannY = 5;
-				assertEquals(LorannX, MonsterX);
+		
 				assertNotEquals(LorannY, MonsterY);
 			case 4:
 				LorannX = 5;
