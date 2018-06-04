@@ -147,7 +147,7 @@ public class LorannTest {
 
 	@Test
 	public void testDoNothing() {
-		
+		fail("");
 	}
 
 	@Test
