@@ -1,6 +1,7 @@
 package mobile;
 
 import java.io.IOException;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -445,8 +446,8 @@ public class Lorann extends Mobile {
 	 */
 	@Override
 	public IMobile getFb() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return fb;
 	}
 
 }
