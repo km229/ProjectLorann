@@ -2,7 +2,6 @@ package controller;
 
 import static org.junit.Assert.*;
 
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -47,19 +46,22 @@ public class LorannControllerTest {
 	@Test
 	public void testLorannController() {
 		this.view = view;
+		assertSame(getView(), this.view);
+		assertSame(getView(), view);
 		this.model = model;
+		assertSame(this.model, model);
+		assertSame(getModel(), model);
 		this.clearStackOrder();
-		if (this.stackOrder == UserOrder.NOP) {
+		assertSame(this.stackOrder, UserOrder.NOP);
+	}
 
-		}
-		if (this.stackOrder != UserOrder.NOP){
-			
-		}
-
+	private ILorannView getView() {
+		return this.view;
 	}
 
 	private void clearStackOrder() {
 		this.stackOrder = UserOrder.NOP;
+		assertSame(this.stackOrder, UserOrder.NOP);
 	}
 
 	private UserOrder getStackOrder() {
@@ -86,6 +88,7 @@ public class LorannControllerTest {
 		NOP,
 		/** The space. */
 		SPACE,
+
 	}
 
 	public IModel getModel() {
@@ -103,71 +106,97 @@ public class LorannControllerTest {
 
 			switch (level) {
 			case 1:
+
 				y = 2;
+				assertEquals(2, y);
 				break;
 			case 2:
 				y = 4;
+				assertEquals(4, y);
 				break;
 			case 3:
 				y = 2;
+				assertEquals(2, y);
 				break;
 			case 4:
 				y = 3;
+				assertEquals(3, y);
 				break;
 			case 5:
 				y = 4;
+				assertEquals(4, y);
 				break;
 			default:
 				y = 0;
+				assertEquals(0, y);
 				break;
 			}
 		}
 
-		int test = 1;
-		switch (test) {
-		case 1:
-			this.stackOrder = UserOrder.UP;
-		case 2:
-			this.stackOrder = UserOrder.DOWN;
-		case 3:
-			this.stackOrder = UserOrder.LEFT;
-		case 4:
-			this.stackOrder = UserOrder.RIGHT;
-		case 5:
-			this.stackOrder = UserOrder.NOP;
-		}
-			this.stackOrder = UserOrder.UP;
-			this.stackOrder = UserOrder.DOWN;
+		int test = 0;
+		Random value = new Random();
 
-			if (this.getStackOrder() != UserOrder.DOWN) {
-				fail("There is a problem in the stackOrder declaration.");
-			}
-
-			Random value = new Random();
-
-			x = value.nextInt(y) + 1;
-
-			if (value.nextInt(y) > y) {
-				fail("There is a problem in the random method.");
-			}
-
-			this.clearStackOrder();
-
-			int LorannX = 4;
-			int LorannY = 9;
-			int MonsterX = 4;
-			int MonsterY = 9;
-			boolean Crashed = false;
-
-			if (LorannX == MonsterX && LorannY == MonsterY) {
-				Crashed = true;
-			}
-
-			if (Crashed == false) {
-				fail("There is a problem in the position test.");
-
+		for (int i = 0; i < 8; i++) {
+			test = test + 1;
+			switch (test) {
+			case 1:
+				this.stackOrder = UserOrder.UP;
+				assertSame(this.stackOrder, UserOrder.UP);
+			case 2:
+				this.stackOrder = UserOrder.DOWN;
+				assertSame(this.stackOrder, UserOrder.DOWN);
+			case 3:
+				this.stackOrder = UserOrder.LEFT;
+				assertSame(this.stackOrder, UserOrder.LEFT);
+			case 4:
+				this.stackOrder = UserOrder.RIGHT;
+				assertSame(this.stackOrder, UserOrder.RIGHT);
+			case 5:
+				this.stackOrder = UserOrder.SPACE;
+				assertSame(this.stackOrder, UserOrder.SPACE);
+			case 6:
+				this.stackOrder = UserOrder.NOP;
+				assertSame(this.stackOrder, UserOrder.NOP);
+			case 7:
+				this.stackOrder = null;
+				assertNull(this.stackOrder);
 			}
 		}
+
+		this.clearStackOrder();
+
+		int LorannX = 4;
+		int LorannY = 9;
+		int MonsterX = 4;
+		int MonsterY = 9;
+		boolean Crashed = false;
+
+		for (int Order = 1; Order < 4; Order++) {
+			switch (Order) {
+			case 1:
+				assertEquals(LorannX, MonsterX);
+				assertEquals(LorannY, MonsterY);
+				if (LorannX == MonsterX && LorannY == MonsterY) {
+					Crashed = true;
+					assertTrue(Crashed);
+				}
+
+			case 2:
+				LorannX = 5;
+				assertNotEquals(LorannX, MonsterX);
+				assertEquals(LorannY, MonsterY);
+				LorannX = 4;
+			case 3:
+				LorannY = 5;
+				assertEquals(LorannX, MonsterX);
+				assertNotEquals(LorannY, MonsterY);
+			case 4:
+				LorannX = 5;
+				assertNotEquals(LorannX, MonsterX);
+				assertNotEquals(LorannY, MonsterY);
+			}
+		}
+	}
 
 	@Test
 	public void testGetView() {
@@ -178,7 +207,12 @@ public class LorannControllerTest {
 	public void testOrderPerform() {
 		this.setStackOrder(UserOrder.UP);
 		if (this.stackOrder != UserOrder.UP) {
-			fail("There is a problem in the stackOrder method.");
+		}
+		if (this.stackOrder == UserOrder.UP) {
+
+		}
+		if (getStackOrder() != UserOrder.UP) {
+
 		}
 	}
 
@@ -195,5 +229,4 @@ public class LorannControllerTest {
 	public void testGetOrderPeformer() {
 
 	}
-
 }
