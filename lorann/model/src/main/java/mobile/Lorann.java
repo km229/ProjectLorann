@@ -1,9 +1,6 @@
 package mobile;
 
-import java.awt.Point;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,8 +16,6 @@ public class Lorann extends Mobile {
 	private String Moving;
 
 	private FireBall fb;
-
-	private static final Sprite fireball1 = new Sprite('c', "fireball_1.png");
 
 	/** The Constant SpriteUL */
 	private static final Sprite spriteUL = new Sprite('c', "lorann_ul.png");
@@ -48,15 +43,19 @@ public class Lorann extends Mobile {
 
 	private static final Sprite spriteGround = new Sprite('c', "ground.png");
 
-	private static final int speed = 200;
+	private static final int speed = 100;
 
 	private boolean etat;
-	
+
+	private static final Sprite fireball1 = new Sprite('c', "fireball_1.png");
+
 	private static final Sprite fireball2 = new Sprite(' ', "fireball_2.png");
 
 	private static final Sprite fireball3 = new Sprite(' ', "fireball_3.png");
-	
+
 	private static final Sprite fireball4 = new Sprite(' ', "fireball_4.png");
+
+	private static final Sprite fireball5 = new Sprite(' ', "fireball_5.png");
 
 	/** The icon. */
 	private int icon = 0;
@@ -77,6 +76,7 @@ public class Lorann extends Mobile {
 		super(x, y, spriteUL, map, Permeability.BLOCKING);
 		setBf(bf);
 		etat = false;
+		Moving = "LEFT";
 		timer.scheduleAtFixedRate(task, 1, speed);
 		spriteUL.loadImage();
 		spriteUR.loadImage();
@@ -86,11 +86,11 @@ public class Lorann extends Mobile {
 		fireball2.loadImage();
 		fireball3.loadImage();
 		fireball4.loadImage();
+		fireball5.loadImage();
 		spriteTurnLeft.loadImage();
 		spriteTurnRight.loadImage();
 		spriteTurnDown.loadImage();
 		spriteTurnUp.loadImage();
-		fireball1.loadImage();
 		fb = new FireBall(20, 20, fireball1, this.getMap(), this.getPermeability());
 	}
 
@@ -252,17 +252,19 @@ public class Lorann extends Mobile {
 		} else if (this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() == Permeability.PURSE) {
 			try {
 				this.setHasFoundThePurse(this.getX() + 1, this.getY());
+
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-			if (!etat) {
-				Moving = "RIGHT";
-			}
-			this.setSprite(spriteTurnRight);
+			this.setX(this.getX() + 1);
+			this.setHasMoved();
 		}
-	}
+		if (!etat) {
+			Moving = "RIGHT";
+		}
+		this.setSprite(spriteTurnRight);
+		}
 
 	/*
 	 * (non-Javadoc)
@@ -308,16 +310,16 @@ public class Lorann extends Mobile {
 	public void magic(BoardFrame bf) {
 		// TODO Auto-generated method stub
 		bf.addPawn(fb);
-		if(!etat) {
-		fb.setX(this.getX());
-		fb.setY(this.getY());
-		etat = true;
+		if (!etat) {
+			fb.setX(this.getX());
+			fb.setY(this.getY());
+			etat = true;
 		}
 	}
-	
+
 	Timer timer = new Timer();
 	TimerTask task = new TimerTask() {
-		
+
 		@Override
 		public void run() {
 			if (etat) {
@@ -325,29 +327,32 @@ public class Lorann extends Mobile {
 			}
 		}
 	};
-	
+
 	private void spriteChange(Sprite sprite) {
-		
-		if(sprite == fireball1) {
+		if (sprite == fireball1) {
 			fb.setSprite(fireball2);
 		}
-		
-		if(sprite == fireball2) {
+
+		if (sprite == fireball2) {
 			fb.setSprite(fireball3);
 		}
-		
-		if(sprite == fireball3) {
+
+		if (sprite == fireball3) {
 			fb.setSprite(fireball4);
 		}
-		
-		if(sprite == fireball4 || sprite == spriteGround) {
+
+		if (sprite == fireball4) {
+			fb.setSprite(fireball5);
+		}
+
+		if (sprite == fireball5 || sprite == spriteGround) {
 			fb.setSprite(fireball1);
 		}
-		if(!etat) {
+
+		if (!etat) {
 			fb.setSprite(spriteGround);
 		}
 	}
-		
 
 	public void play() {
 		spriteChange(fb.getSprite());
@@ -370,16 +375,30 @@ public class Lorann extends Mobile {
 		if (Moving == "LEFT") {
 			fb.moveLeft();
 			endFireBall();
-			
+
 		}
 
 	}
 
 	public void endFireBall() {
 		if (this.getMap().getOnTheMapXY(fb.getX(), fb.getY()).getPermeability() == Permeability.BLOCKING) {
-		etat = false;
-		fb.setSprite(spriteGround);
+			etat = false;
+			fb.setSprite(spriteGround);
 		}
+	}
+	
+	public FireBall getFb() {
+		return fb;
+	}
+
+	public void setFb(FireBall fb) {
+		this.fb = fb;
+	}
+
+	@Override
+	public void monsterDestroyed() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
