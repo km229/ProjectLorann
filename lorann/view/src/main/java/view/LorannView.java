@@ -111,10 +111,18 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		boardFrame.setVisible(true);
 	}
 	
+	/** Reurn the boardframe.
+	 * 
+	 * @return boardFrame
+	 */
 	public BoardFrame getBoardFrame() {
 		return boardFrame;
 	}
 
+	/** Set the boardFrame.
+	 * 
+	 * @param boardFrame
+	 */
 	public void setBoardFrame(BoardFrame boardFrame) {
 		this.boardFrame = boardFrame;
 	}
@@ -152,6 +160,10 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		return userOrder;
 	}
 
+	/** Perform the order according to the KeyEvent.
+	 * 
+	 * @param keyEvent
+	 */
 	public final void keyPressed(final KeyEvent keyEvent) {
 		try {
 			this.getOrderPerformer().orderPerform(keyCodeToUserOrder(keyEvent.getKeyCode()));
@@ -285,6 +297,11 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		this.closeView = closeView;
 	}
 	
+	/** Return the selected monster.
+	 *  
+	 * @param monster
+	 * @return
+	 */
 	public IMobile getMonster(int monster) {
 		switch (monster) {
 		case 1:
@@ -300,6 +317,11 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		}
 	}
 
+	/** Set the selected monster.
+	 * 
+	 * @param monster
+	 * @param Monster
+	 */
 	public void setMonster(int monster, IMobile Monster) {
 		switch (monster) {
 		case 1:

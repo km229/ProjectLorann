@@ -78,11 +78,25 @@ public interface IMobile extends IPawn, IElement {
     String victory();
 
 	/**
-	 * Checks the power of Lorann.
+	 * the power of Lorann.
 	 * 
 	 * @throws IOException
 	 * @throws InterruptedException 
 	 */
 	void magic(BoardFrame bf) throws IOException, InterruptedException;
+	
+    /**
+     * Return our boardframe.
+     *
+     * @return the boardframe
+     */
+	IMobile getFb();
+	
+    /**
+     * Checks if is alive.
+     *
+     * @return the alive
+     */
+	void monsterDestroyed();
 
 }

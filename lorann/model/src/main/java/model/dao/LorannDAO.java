@@ -1,6 +1,5 @@
 package model.dao;
 
-import java.io.File;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.CallableStatement;
@@ -8,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * <h1>The Class ExampleDAO.</h1>
+ * <h1>The Class LorannDAO.</h1>
  *
- * @author Jean-Aymeric DIET jadiet@cesi.fr
+ * @author group2
  * @version 1.0
  */
 public class LorannDAO extends AbstractDAO {
@@ -18,6 +17,14 @@ public class LorannDAO extends AbstractDAO {
     /** The sql example by id. */
     private static String sqlExampleById   = "{call findExampleById(?)}";
 
+
+    /**
+     * Constructor of LorannDAO.
+     */
+    public LorannDAO(){
+    	super();
+    }
+    
     /**
      * Gets the level by id.
      * @param blob 
@@ -29,10 +36,6 @@ public class LorannDAO extends AbstractDAO {
      * @throws SQLException
      *             the SQL exception
      */
-    
-    public LorannDAO(){
-    	super();
-    }
     
     public InputStream getLevelById(final int id) throws SQLException {
         final CallableStatement callStatement = prepareCall(sqlExampleById);

@@ -7,7 +7,6 @@ import java.sql.SQLException;
 
 import controller.LorannController;
 import model.LorannModel;
-import showboard.BoardFrame;
 import view.LorannView;
 
 /**
@@ -34,12 +33,7 @@ public abstract class Main {
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
-	/**
-	 * @param args
-	 * @throws IOException
-	 * @throws SQLException
-	 * @throws InterruptedException
-	 */
+
 	public static void main(final String[] args) throws IOException, SQLException, InterruptedException {
 
 		System.out.println("Enter level (1-5) : ");
@@ -77,6 +71,7 @@ public abstract class Main {
 	}
 
 	/**
+	 * Assign values X and Y for our Lorann according to the level selected.
 	 * @param level
 	 *            The level
 	 */
@@ -107,7 +102,7 @@ public abstract class Main {
 	}
 
 	/**
-	 * 
+	 * Return true if it is an int.
 	 * @param string
 	 * @return return the wholeNumber
 	 */
@@ -123,6 +118,7 @@ public abstract class Main {
 	}
 
 	/**
+	 * Return an error if it is an unvailable level.
 	 * @throws IOException
 	 * @throws SQLException
 	 * @throws InterruptedException
@@ -135,6 +131,7 @@ public abstract class Main {
 	}
 
 	/**
+	 * Start the game.
 	 * @param level
 	 * 		Start the chosen level
 	 * @throws IOException

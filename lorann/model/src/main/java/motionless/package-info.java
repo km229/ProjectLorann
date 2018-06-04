@@ -1,8 +1,7 @@
 /**
+ *  Provides all classes for the motionless component.
  * 
- */
-/**
- * @author Kévin MORICEAU
- *
+ * @author group2
+ * @version 1.0
  */
 package motionless;

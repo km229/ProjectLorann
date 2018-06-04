@@ -7,17 +7,14 @@ import model.IMap;
 import model.IMobile;
 import model.Permeability;
 import model.Sprite;
-import motionless.Ground;
 import motionless.MotionlessElementFactory;
 import showboard.IBoard;
 
-/**
- * 
- * <h1>Class Mobile</h1>
+/**<h1>Class Mobile</h1>
  *  
  * @author group2
- *
  * @version 1.0
+ * @see Element, IMobile
  */
 
 public abstract class Mobile extends Element implements IMobile {
@@ -159,17 +156,18 @@ public abstract class Mobile extends Element implements IMobile {
 	}
 
 	/**
-	 *  Set lorann has moved
+	 *  Set lorann has moved.
 	 */
 	protected void setHasMoved() {
 		this.getMap().setMobileHasChanged();
 	}
 
 	/**
+	 * Lorann has found the crystal, the door is now opened.
 	 * @param x
-	 * 		Set the position X of the CrystalBall
+	 * 		Set the position X of the CrystalBall.
 	 * @param y
-	 * 		Set the position Y of the CrystalBall
+	 * 		Set the position Y of the CrystalBall.
 	 * @throws IOException
 	 * 
 	 */
@@ -190,16 +188,19 @@ public abstract class Mobile extends Element implements IMobile {
 	}
 
 	/**
+	 * This method increases our score if Lorann is on a purse.
 	 * @param x
-	 * 		Set the position X of the Purse
+	 * 		Set the position X of the Purse.
 	 * @param y
-	 * 		Set the position Y of the Purse
+	 * 		Set the position Y of the Purse.
 	 * @throws IOException
 	 */
 	protected void setHasFoundThePurse(int x, int y) throws IOException {
-		this.getMap().dieOntheMapXY(x, y);
-		this.getMap().setOnTheMapXY(new Ground(), x, y);
-		this.getMap().getOnTheMapXY(x, y).getSprite().loadImage();
+		System.out.println("PURSE");
+		Element purse = MotionlessElementFactory.createGround();
+		purse.getSprite().loadImage();
+		this.getMap().getOnTheMapXY(x, y).setSprite(purse.getSprite());
+		this.getMap().setOnTheMapXY(purse, x, y);
 		this.score+=100;
 	}
 
@@ -244,7 +245,6 @@ public abstract class Mobile extends Element implements IMobile {
 	public void isCrashed() {
 		this.alive = false;
 		this.setHasMoved();
-		// TODO Auto-generated method stub
 		// return this.getMap().getOnTheMapXY(this.getX(),
 		// this.getY()).getPermeability() == Permeability.BLOCKING;
 	}

@@ -48,13 +48,5 @@ public interface IMap {
 	 * 		The position Y.
 	 */
 	void setOnTheMapXY(final IElement element, final int x, final int y);
-	
-	/**
-	 * @param x
-	 * 		The position X.
-	 * @param Y
-	 * 		The position Y.
-	 */
-	void dieOntheMapXY(final int x, final int Y);
 
 }

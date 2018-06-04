@@ -1,8 +1,8 @@
+
 /**
+ * * Provides all classes for the element component.
  * 
- */
-/**
- * @author Kévin MORICEAU
- *
+ * @author grou2
+ * @version 1.0
  */
 package element;

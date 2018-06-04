@@ -2,6 +2,13 @@ package controller;
 
 import java.io.IOException;
 
+/**
+ * <h1>Interface ILorannController</h1>
+ *
+ * @author group2
+ * @version 1.0
+ */
+
 public interface ILorannController {
 	
 	 /**

@@ -7,11 +7,11 @@ import model.Permeability;
 import model.Sprite;
 
 /**
- * <h1>Element Class</h1>
+ * <h1>The class Element.</h1>
  *
  * @author group2
  * @version 1.0
- * @see ISquare
+ * @see IElement
  */
 
 public class Element implements IElement{
@@ -35,10 +35,6 @@ public class Element implements IElement{
         this.setPermeability(permeability);
     }
 
-    /*
-     * (non-Javadoc)
-     * @see fr.exia.showboard.ISquare#getImage()
-     */
     /*
      * (non-Javadoc)
      * @see fr.exia.insanevehicles.model.element.IElement#getImage()

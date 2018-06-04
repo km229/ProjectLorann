@@ -37,6 +37,11 @@ public interface ILorannView {
      */
 	void keyTyped(KeyEvent keyEvent);
 
-
+    /**
+     * Return our boardframe.
+     *
+     * @return boardframe
+     *            the boardframe
+     */
 	BoardFrame getBoardFrame();
 }
