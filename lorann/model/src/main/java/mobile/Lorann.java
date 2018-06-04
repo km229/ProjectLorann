@@ -315,9 +315,6 @@ public class Lorann extends Mobile {
 		}
 	}
 	
-	
-
-	
 	Timer timer = new Timer();
 	TimerTask task = new TimerTask() {
 		
@@ -326,9 +323,7 @@ public class Lorann extends Mobile {
 			if (etat) {
 				play();
 			}
-
 		}
-
 	};
 	
 	private void spriteChange(Sprite sprite) {
@@ -348,6 +343,9 @@ public class Lorann extends Mobile {
 		if(sprite == fireball4 || sprite == spriteGround) {
 			fb.setSprite(fireball1);
 		}
+		if(!etat) {
+			fb.setSprite(spriteGround);
+		}
 	}
 		
 
@@ -356,39 +354,32 @@ public class Lorann extends Mobile {
 
 		if (Moving == "UP") {
 			fb.moveUp();
-
-			if (this.getMap().getOnTheMapXY(fb.getX(), fb.getY() - 1).getPermeability() == Permeability.BLOCKING) {
-				endFireBall();
-			}
-
+			endFireBall();
 		}
 
 		if (Moving == "DOWN") {
 			fb.moveDown();
-			if (this.getMap().getOnTheMapXY(fb.getX(), fb.getY() + 1).getPermeability() == Permeability.BLOCKING) {
-				endFireBall();
-			}
+			endFireBall();
 		}
 
 		if (Moving == "RIGHT") {
 			fb.moveRight();
-			if (this.getMap().getOnTheMapXY(fb.getX() + 1, fb.getY()).getPermeability() == Permeability.BLOCKING) {
-				endFireBall();
-			}
+			endFireBall();
 		}
 
 		if (Moving == "LEFT") {
 			fb.moveLeft();
-			if (this.getMap().getOnTheMapXY(fb.getX() - 1, fb.getY()).getPermeability() == Permeability.BLOCKING) {
-				endFireBall();
-			}
+			endFireBall();
+			
 		}
 
 	}
 
 	public void endFireBall() {
+		if (this.getMap().getOnTheMapXY(fb.getX(), fb.getY()).getPermeability() == Permeability.BLOCKING) {
 		etat = false;
 		fb.setSprite(spriteGround);
+		}
 	}
 
 }
