@@ -6,10 +6,12 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import element.Element;
 import model.IMap;
 import model.IMobile;
 import model.Permeability;
 import model.Sprite;
+import motionless.HorizontalBone;
 import showboard.BoardFrame;
 
 
@@ -390,6 +392,7 @@ public class Lorann extends Mobile {
 	/** Method to lauch our fireball in the right direction. */
 	
 	public void play() {
+		
 		spriteChange(fb.getSprite());
 
 		if (Moving == "UP") {
