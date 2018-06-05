@@ -14,22 +14,12 @@ import model.Permeability;
 
 
 
-
-
 public class LorannTest {
 	
 	private Point position;
-	
-	
+
 	
 	boolean alive;
-
-
-
-	private Object fb;
-
-
-
 
 	
 
@@ -167,28 +157,20 @@ public class LorannTest {
 		
 	}
 
-	@Test
-	public void testDoNothing() {
-	
-	}
 
-	@Test
-	public void testLorann() {
-		
-	}
 
 
 	@Test // Doesn't work
 	public void testMagic() {
-		
+		int ax = 0;
+		int ay = 0;
 		this.position = new Point(1,1);
 		
 		boolean etat = false;
 		
-		fb = null;
 		if (!etat){
-			((LorannTest) fb).testSetX(this.testGetX());
-			((LorannTest) fb).testSetY(this.testGetY());
+			ax = (this.testGetX());
+			ay = (this.testGetY());
 			etat = true;
 		}
 			
@@ -196,11 +178,13 @@ public class LorannTest {
 			fail("etat is set to false");
 		
 		}
-		assertNotNull(fb);
-		
+		if (ax == 0 || ay == 0){
+		fail();
+		}
 	}
 
 	
+
 	public void testSetY(int y) {
 		this.testGetPosition().y = y;
 	}
