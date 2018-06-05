@@ -61,13 +61,6 @@ public interface IMobile extends IPawn, IElement {
      * @return the alive
      */
     Boolean isAlive();
-
-    /**
-     * Checks if the lorann crashed in a monster.
-     *
-     * @return the boolean
-     */
-    void isCrashed();
     
     /**
      * Checks if the lorann has found the CrystalBall.
@@ -97,5 +90,7 @@ public interface IMobile extends IPawn, IElement {
      * @return the alive
      */
 	void monsterDestroyed();
+
+	void isCrashed();
 
 }

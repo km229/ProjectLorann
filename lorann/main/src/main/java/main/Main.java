@@ -41,9 +41,8 @@ public abstract class Main {
 
 			BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
 			String levelString = bufferRead.readLine();
-			Boolean iswholeNumber = WholeNumber(levelString);
 
-			if (!iswholeNumber) {
+			if (!WholeNumber(levelString)) {
 				int level = Integer.parseInt(levelString);
 
 				if (level > 0 && level < 6) {

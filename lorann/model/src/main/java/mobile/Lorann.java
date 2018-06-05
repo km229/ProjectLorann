@@ -6,10 +6,12 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import element.Element;
 import model.IMap;
 import model.IMobile;
 import model.Permeability;
 import model.Sprite;
+import motionless.HorizontalBone;
 import showboard.BoardFrame;
 
 
@@ -151,6 +153,9 @@ public class Lorann extends Mobile {
 			}
 			this.setY(this.getY() - 1);
 			this.setHasMoved();
+		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1).getPermeability() == Permeability.MONSTER) {
+			this.setY(this.getY() - 1);
+			this.die();
 		}
 
 		if (!etat) {
@@ -193,6 +198,9 @@ public class Lorann extends Mobile {
 			}
 			this.setX(this.getX() - 1);
 			this.setHasMoved();
+		} else if (this.getMap().getOnTheMapXY(this.getX() - 1, this.getY()).getPermeability() == Permeability.MONSTER) {
+			this.setX(this.getX() - 1);
+			this.die();
 		}
 		if (!etat) {
 			Moving = "LEFT";
@@ -233,6 +241,9 @@ public class Lorann extends Mobile {
 			}
 			this.setY(this.getY() + 1);
 			this.setHasMoved();
+		} else if (this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1).getPermeability() == Permeability.MONSTER) {
+			this.setY(this.getY() + 1);
+			this.die();
 		}
 		if (!etat) {
 			Moving = "DOWN";
@@ -275,6 +286,9 @@ public class Lorann extends Mobile {
 			}
 			this.setX(this.getX() + 1);
 			this.setHasMoved();
+		} else if (this.getMap().getOnTheMapXY(this.getX() + 1, this.getY()).getPermeability() == Permeability.MONSTER) {
+			this.setX(this.getX() + 1);
+			this.die();
 		}
 		if (!etat) {
 			Moving = "RIGHT";
@@ -378,38 +392,64 @@ public class Lorann extends Mobile {
 	/** Method to lauch our fireball in the right direction. */
 	
 	public void play() {
+		
 		spriteChange(fb.getSprite());
 
 		if (Moving == "UP") {
 			fb.moveUp();
-			endFireBall();
+			if (this.getMap().getOnTheMapXY(fb.getX(), fb.getY()).getPermeability() == Permeability.BLOCKING) {
+				
+				Moving = "DOWN";
+				fb.moveDown();
+			}
 		}
 
 		if (Moving == "DOWN") {
 			fb.moveDown();
-			endFireBall();
+			if (this.getMap().getOnTheMapXY(fb.getX(), fb.getY()).getPermeability() == Permeability.BLOCKING) {
+				
+				Moving = "UP";
+				fb.moveUp();
+				
+			}
 		}
 
 		if (Moving == "RIGHT") {
 			fb.moveRight();
-			endFireBall();
+			if (this.getMap().getOnTheMapXY(fb.getX(), fb.getY()).getPermeability() == Permeability.BLOCKING) {
+				
+				Moving = "LEFT";
+				fb.moveLeft();
+				
+			}
 		}
 
 		if (Moving == "LEFT") {
 			fb.moveLeft();
-			endFireBall();
+			if (this.getMap().getOnTheMapXY(fb.getX(), fb.getY()).getPermeability() == Permeability.BLOCKING) {
+				
+				Moving = "RIGHT";
+				fb.moveRight();
+				
+			}
 
+		}
+				
+		if(fb.getX() == this.getX()) {
+			if(fb.getY() == this.getY()) {
+				endFireBall();
+			}
+			
 		}
 
 	}
 
 	/** Method to stop the fireball before a wall. */
 	public void endFireBall() {
-		if (this.getMap().getOnTheMapXY(fb.getX(), fb.getY()).getPermeability() == Permeability.BLOCKING) {
 			etat = false;
 			fb.setSprite(spriteGround);
-		}
 	}
+	
 
 	/*
 	 * (non-Javadoc)

@@ -20,7 +20,7 @@ public class Gate extends MotionlessElement {
 	 * Instantiates a new gate.
 	 */
 	public Gate() {
-		super(SPRITE, Permeability.BLOCKING);
+		super(SPRITE, Permeability.MONSTER);
 	}
 
 }
