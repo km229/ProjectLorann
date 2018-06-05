@@ -120,6 +120,8 @@ public class LorannModel implements IModel {
 		case 1:
 			this.monster1 = new Monster1(7, 5, map, Permeability.MONSTER);
 			this.monster2 = new Monster2(3, 4, map, Permeability.MONSTER);
+			this.monster3 = new Monster3(5, 8, map, Permeability.MONSTER);
+			this.monster4 = new Monster4(5, 2, map, Permeability.MONSTER);
  
 			break;
 		case 2:
@@ -132,6 +134,8 @@ public class LorannModel implements IModel {
 		case 3:
 			this.monster1 = new Monster1(7, 6, map, Permeability.MONSTER);
 			this.monster2 = new Monster2(7, 5, map, Permeability.MONSTER);
+			this.monster3 = new Monster3(10, 2, map, Permeability.MONSTER);
+			this.monster4 = new Monster4(17, 1, map, Permeability.MONSTER);
  
 			
 			break;
@@ -139,6 +143,7 @@ public class LorannModel implements IModel {
 			this.monster1 = new Monster1(16, 1, map, Permeability.MONSTER);
 			this.monster2 = new Monster2(12, 10, map, Permeability.MONSTER);
 			this.monster3 = new Monster3(1, 3, map, Permeability.MONSTER);
+			this.monster4 = new Monster4(12, 7, map, Permeability.MONSTER);
 
 			break;
 		case 5:
