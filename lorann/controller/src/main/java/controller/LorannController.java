@@ -1,8 +1,18 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import java.util.Random;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import model.IModel;
 import model.Permeability;
 import view.ILorannView;
@@ -29,6 +39,20 @@ public class LorannController implements ILorannController, IOrderPerformer {
 
 	/** The stackOrder. */
 	private UserOrder stackOrder;
+	
+	private File yourFile;
+	
+	private AudioInputStream stream = null;
+	
+	private AudioFormat format;
+	
+	private DataLine.Info info;
+	
+	private	Clip clip = null;
+	
+	private	Clip clip2 = null;
+	
+	private boolean victory = true;
 
 	/**
 	 * Instantiates a new LorannController.
@@ -42,6 +66,8 @@ public class LorannController implements ILorannController, IOrderPerformer {
 		this.view = view;
 		this.model = model;
 		this.clearStackOrder();
+		yourFile = new File("../sprite/gamemusic.wav");
+		musicGame();
 	}
 
 	/*
@@ -145,21 +171,95 @@ public class LorannController implements ILorannController, IOrderPerformer {
 						&& this.getModel().getLorann().getY() == this.getModel().getMonster(z).getY()
 						&& this.getModel().getMonster(z).getPermeability() == Permeability.MONSTER) {
 					this.getModel().getLorann().isCrashed();
+					victory = false;
 				}
 					if(this.getModel().getMonster(z).getX() == this.getModel().getLorann().getFb().getX()
-							&& this.getModel().getMonster(z).getY() == this.getModel().getLorann().getFb().getY()){
+							&& this.getModel().getMonster(z).getY() == this.getModel().getLorann().getFb().getY()
+							&& this.getModel().getMonster(z).getPermeability() == Permeability.MONSTER){
 						this.getModel().getMonster(z).monsterDestroyed();
+						yourFile = new File("../sprite/deathmonster.wav");
+						music();
 					}
 				}
 
 			}
 
-		if (this.getModel().getLorann().victory() == "VICTORY") {
-			this.getView().displayMessage(this.getModel().getLorann().victory());
+		if(victory) {
+			clip2.stop();
+			yourFile = new File("../sprite/victory.wav");
+			music();
 		} else {
-			this.getView().displayMessage(this.getModel().getLorann().victory());
+			clip2.stop();
+			yourFile = new File("../sprite/gameover.wav");
+			music();
 		}
+			this.getView().displayMessage(this.getModel().getLorann().victory());
+		
 	}
+	
+	
+	private void musicGame() {
+		// TODO Auto-generated method stub
+		try {
+			stream = AudioSystem.getAudioInputStream(yourFile);
+		} catch (UnsupportedAudioFileException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    format = stream.getFormat();
+	    info = new DataLine.Info(Clip.class, format);
+	    try {
+			clip2 = (Clip) AudioSystem.getLine(info);
+		} catch (LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    try {
+			clip2.open(stream);
+		} catch (LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    clip2.start();
+	}
+	
+	private void music() {
+		// TODO Auto-generated method stub
+		try {
+			stream = AudioSystem.getAudioInputStream(yourFile);
+		} catch (UnsupportedAudioFileException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    format = stream.getFormat();
+	    info = new DataLine.Info(Clip.class, format);
+	    try {
+			clip = (Clip) AudioSystem.getLine(info);
+		} catch (LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    try {
+			clip.open(stream);
+		} catch (LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    clip.start();
+	}
+	
 
 	/**
 	 * Gets the view.
