@@ -1,7 +1,6 @@
 package model;
 
 import java.io.IOException;
-
 import showboard.BoardFrame;
 import showboard.IPawn;
 

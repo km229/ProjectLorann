@@ -1,8 +1,8 @@
 package controller;
 
 import java.io.IOException;
-import java.util.Random;
 
+import java.util.Random;
 import model.IModel;
 import model.Permeability;
 import view.ILorannView;
@@ -145,14 +145,14 @@ public class LorannController implements ILorannController, IOrderPerformer {
 						&& this.getModel().getLorann().getY() == this.getModel().getMonster(z).getY()
 						&& this.getModel().getMonster(z).getPermeability() == Permeability.MONSTER) {
 					this.getModel().getLorann().isCrashed();
+				}
+					if(this.getModel().getMonster(z).getX() == this.getModel().getLorann().getFb().getX()
+							&& this.getModel().getMonster(z).getY() == this.getModel().getLorann().getFb().getY()){
+						this.getModel().getMonster(z).monsterDestroyed();
+					}
+				}
 
-				}
-				if(this.getModel().getMonster(z).getX() == this.getModel().getLorann().getFb().getX()
-						&& this.getModel().getMonster(z).getY() == this.getModel().getLorann().getFb().getY()){
-					this.getModel().getMonster(z).monsterDestroyed();
-				}
 			}
-		}
 
 		if (this.getModel().getLorann().victory() == "VICTORY") {
 			this.getView().displayMessage(this.getModel().getLorann().victory());

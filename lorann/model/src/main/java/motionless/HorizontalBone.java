@@ -1,6 +1,7 @@
 package motionless;
 
 import model.Permeability;
+
 import model.Sprite;
 
 /**
