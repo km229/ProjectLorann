@@ -2,6 +2,10 @@ package model.dao;
 
 import static org.junit.Assert.*;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -9,41 +13,49 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class LorannBDDConnectorTest {
-	
-	private static LorannBDDConnectorTest instance;
-	
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
+    private LorannBDDConnector connector;
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
+    @Before
+    public void setUp() throws Exception {
+        this.connector = new LorannBDDConnector();
+    }
 
 
-	@Test
-	public void testGetInstance() {
-		if (instance == null) {
-            testSetInstance(new LorannBDDConnectorTest());
+    @Test
+    public void testExecuteQuery() {
+         try {
+                Statement statement = connector.getConnection().createStatement();
+                ResultSet resultEspected = statement.executeQuery("SELECT * FROM example");
+                String resultStringEspected = "";
+
+                while (resultEspected.next()) {
+                    resultStringEspected += resultEspected.getString(1);
+                }
+
+                ResultSet result = connector.executeQuery("SELECT * FROM example");
+                String resultString = "";
+
+                while (result.next()) {
+                    resultString += result.getString(1);
+                }
+
+                assertEquals(resultStringEspected,resultString);
+
+            } catch (final SQLException e) {
+                e.printStackTrace();
+                fail("May be credential problem.");
+            }
         }
-		else {
-			fail("instance already up");
-		}
-        return;
-	}
-	
-	 private static void testSetInstance(final LorannBDDConnectorTest instance) {
-	        LorannBDDConnectorTest.instance = instance;
-	        
-	        assertNotNull(instance);
-	    }
+
+
+    @Test
+    public void testExecuteUpdate() {
+    }
+
+    @Test
+    public void testPrepareCallString() {
+    }
+
 }
 
