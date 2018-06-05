@@ -209,6 +209,7 @@ public abstract class Mobile extends Element implements IMobile {
 	 * @throws IOException
 	 */
 	protected void setHasFoundThePurse(int x, int y) throws IOException {
+		this.getMap().setOnTheMapXY(new Ground(), x, y);
 		this.score+=100;
 	}
 
