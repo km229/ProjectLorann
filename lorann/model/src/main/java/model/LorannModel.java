@@ -150,7 +150,7 @@ public class LorannModel implements IModel {
 			this.monster1 = new Monster1(8, 4, map, Permeability.MONSTER);
 			this.monster2 = new Monster2(4, 6, map, Permeability.MONSTER);
 			this.monster3 = new Monster3(4, 4, map, Permeability.MONSTER);
-			this.monster4 = new Monster4(10, 8, map, Permeability.MONSTER);
+			this.monster4 = new Monster4(15, 8, map, Permeability.MONSTER);
 
 			break;
 		default:
