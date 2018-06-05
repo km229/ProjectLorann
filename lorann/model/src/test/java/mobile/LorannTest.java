@@ -208,7 +208,9 @@ public class LorannTest {
 
 	@Test
 	public void testIsAlive() {
-		
+		if (alive = false){
+			fail("Is not alive");
+		}
 		return;
 	}
 
@@ -220,7 +222,8 @@ public class LorannTest {
 		
 	}
 
-	@Test
+	
+	
 	public void testSetPosition() {
 		
 	}
