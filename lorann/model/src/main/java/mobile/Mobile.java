@@ -4,12 +4,16 @@ import java.awt.Point;
 
 
 import java.io.IOException;
+import java.util.Observable;
+
 import element.Element;
 import model.IMap;
 import model.IMobile;
 import model.Permeability;
 import model.Sprite;
+import motionless.Bone;
 import motionless.Ground;
+import motionless.Purse;
 import showboard.IBoard;
 
 /**
@@ -208,8 +212,12 @@ public abstract class Mobile extends Element implements IMobile {
 	 *            Set the position Y of the Purse.
 	 * @throws IOException
 	 */
+	
+	
+	
 	protected void setHasFoundThePurse(int x, int y) throws IOException {
 		this.getMap().setOnTheMapXY(new Ground(), x, y);
+		this.getMap().getOnTheMapXY(x, y).getSprite().loadImage();
 		this.score+=100;
 	}
 
