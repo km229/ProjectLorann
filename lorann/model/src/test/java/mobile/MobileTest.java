@@ -2,6 +2,8 @@ package mobile;
 
 import static org.junit.Assert.*;
 
+import java.awt.Point;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -9,7 +11,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class MobileTest {
-
+	
+	private Point position;
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -38,7 +42,12 @@ public class MobileTest {
 
 	@Test
 	public void testMoveUp() {
-		fail("Not yet implemented");
+		
+		this.testSetY(this.testGetY() - 1);
+		this.testSetHasMoved();
+		
+		
+	
 	}
 
 	@Test
@@ -61,24 +70,22 @@ public class MobileTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testSetY() {
-		fail("Not yet implemented");
+	
+	public void testSetY(int y) {
+		this.testGetPosition().y = y;
 	}
 
-	@Test
-	public void testSetX() {
-		fail("Not yet implemented");
+
+	public void testSetX(int x) {
+		this.testGetPosition().x = x;
 	}
 
-	@Test
-	public void testGetY() {
-		fail("Not yet implemented");
+	public int testGetY() {
+		return this.testGetPosition().y;
 	}
 
-	@Test
-	public void testGetX() {
-		fail("Not yet implemented");
+	public int testGetX() {
+		return this.testGetPosition().x;
 	}
 
 	@Test
@@ -121,9 +128,8 @@ public class MobileTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testGetPosition() {
-		fail("Not yet implemented");
+	public Point testGetPosition() {
+		return this.position;
 	}
 
 	@Test

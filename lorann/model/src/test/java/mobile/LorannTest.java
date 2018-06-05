@@ -2,6 +2,8 @@ package mobile;
 
 import static org.junit.Assert.*;
 
+import java.awt.Point;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -10,7 +12,26 @@ import org.junit.Test;
 
 import model.Permeability;
 
+
+
+
+
 public class LorannTest {
+	
+	private Point position;
+	
+	
+	
+	boolean alive;
+
+
+
+	private Object fb;
+
+
+
+
+	
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -22,6 +43,7 @@ public class LorannTest {
 
 	@Before
 	public void setUp() throws Exception {
+		
 		
 		
 	}
@@ -155,81 +177,62 @@ public class LorannTest {
 		
 	}
 
-	@Test
-	public void testVictory() {
-		
-	}
 
-	@Test
+	@Test // Doesn't work
 	public void testMagic() {
 		
+		this.position = new Point(1,1);
 		
+		boolean etat = false;
 		
+		fb = null;
+		if (!etat){
+			((LorannTest) fb).testSetX(this.testGetX());
+			((LorannTest) fb).testSetY(this.testGetY());
+			etat = true;
+		}
+			
+		if (etat = false){
+			fail("etat is set to false");
 		
-	}
-
-	@Test
-	public void testSetY() {
-		
-	}
-
-	@Test
-	public void testSetX() {
-		
-	}
-
-	@Test
-	public void testGetY() {
-		
-	}
-
-	@Test
-	public void testGetX() {
+		}
+		assertNotNull(fb);
 		
 	}
 
-	@Test
-	public void testSetHasMoved() {
-		
-	}
-
-	@Test
-	public void testSetHasFoundTheCrystal() {
 	
+	public void testSetY(int y) {
+		this.testGetPosition().y = y;
 	}
 
-	@Test
-	public void testSetHasFoundThePurse() {
-		
+
+	public void testSetX(int x) {
+		this.testGetPosition().x = x;
 	}
 
-	@Test
-	public void testGetMap() {
-		
+	
+	public int testGetY() {
+		return this.testGetPosition().y;
 	}
 
-	@Test
-	public void testSetMap() {
-		
+	
+	public int testGetX() {
+		return this.testGetPosition().x;
 	}
+
+
 
 	@Test
 	public void testIsAlive() {
 		
+		return;
 	}
 
-	@Test
-	public void testDie() {
-		
-	}
 
-	@Test
-	public void testIsCrashed() {
-		
-	}
 
-	@Test
-	public void testGetPosition() {
+
+	public Point testGetPosition() {
+		return this.position;
 		
 	}
 
@@ -238,30 +241,7 @@ public class LorannTest {
 		
 	}
 
-	@Test
-	public void testGetBoard() {
-		
-	}
 
-	@Test
-	public void testGetVictory() {
-		
-	}
-
-	@Test
-	public void testSetVictory() {
-		
-	}
-
-	@Test
-	public void testGetImage() {
-		
-	}
-
-	@Test
-	public void testGetSprite() {
-
-	}
 
 	
 	public Permeability testGetPermeability() {
@@ -270,69 +250,6 @@ public class LorannTest {
 	
 	}
 
-	@Test
-	public void testSetSprite() {
-		
-	}
 
-	@Test
-	public void testSetPermeability() {
-		
-	}
-
-	@Test
-	public void testGetClass() {
-	
-	}
-
-	@Test
-	public void testHashCode() {
-		
-	}
-
-	@Test
-	public void testEquals() {
-		
-	}
-
-	@Test
-	public void testClone() {
-		
-	}
-
-	@Test
-	public void testToString() {
-		
-	}
-
-	@Test
-	public void testNotify() {
-		
-	}
-
-	@Test
-	public void testNotifyAll() {
-	
-	}
-
-	@Test
-	public void testWaitLong() {
-		
-	}
-
-	@Test
-	public void testWaitLongInt() {
-		
-	}
-
-	@Test
-	public void testWait() {
-		
-	}
-
-	@Test
-	public void testFinalize() {
-		
-	}
 
 }
