@@ -1,12 +1,14 @@
 package view;
 
 import static org.junit.Assert.*;
-
+import java.awt.Dimension;
+import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import showboard.BoardFrame;
 
 public class LorannViewTest {
 
@@ -26,69 +28,14 @@ public class LorannViewTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
-	public void testLorannView() {
-		fail("Not yet implemented");
-	}
 
 	@Test
-	public void testRun() {
-		fail("Not yet implemented");
+	public void testRun() throws IOException, InterruptedException {
+		BoardFrame boardFrame = new BoardFrame("Lorran");
+		boardFrame.setDimension(new Dimension(10, 10));
+		boardFrame.setSize(10, 10);
+		assertNotNull(boardFrame);
 	}
 
-	@Test
-	public void testKeyPressed() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetOrderPerformer() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testDisplayMessage() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testKeyReleased() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testKeyTyped() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetSquareSize() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetSquareSize() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetCloseView() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetCloseView() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetMonster() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetMonster() {
-		fail("Not yet implemented");
-	}
 
 }

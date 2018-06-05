@@ -72,7 +72,6 @@ public class LorannView implements Runnable, KeyListener, ILorannView {
 		this.monster4 = model.getMonster(4);
 		this.setCloseView(new Rectangle(0, 0, this.getMap().getWidth(), this.getMap().getHeight()));
 		SwingUtilities.invokeLater(this);
-		
 	}
 
 	/*
