@@ -3,6 +3,7 @@ package view;
 import static org.junit.Assert.*;
 import java.awt.Dimension;
 import java.io.IOException;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -36,6 +37,5 @@ public class LorannViewTest {
 		boardFrame.setSize(10, 10);
 		assertNotNull(boardFrame);
 	}
-
 
 }

@@ -41,7 +41,7 @@ public class Map extends Observable implements IMap {
 	 *             Signals that an I/O exception has occurred.
 	 * @throws SQLException
 	 */
-	Map(final int level) throws IOException, SQLException {
+	public Map(final int level) throws IOException, SQLException {
 		super();
 		this.loadFile(level);
 	}
